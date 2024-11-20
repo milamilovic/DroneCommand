@@ -108,7 +108,7 @@ int main(void)
             glfwSetWindowShouldClose(window, GL_TRUE);
         }
 
-        glClearColor(0.3f, 0.3f, 0.35f, 1.0f);
+        glClearColor(0.184, 0.341, 0.227, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         glUseProgram(mapShader);
