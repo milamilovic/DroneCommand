@@ -54,8 +54,7 @@
               "RelativeToolTip": "basic.vert",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-11-20T16:24:41.675Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-20T16:24:41.675Z"
             },
             {
               "$type": "Document",
@@ -67,8 +66,7 @@
               "RelativeToolTip": "basic.frag",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-11-20T16:22:32.686Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-20T16:22:32.686Z"
             },
             {
               "$type": "Document",
@@ -90,7 +88,7 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "D:\\faks\\DroneCommand\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAiwBUAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAiwCAAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-20T15:52:28.254Z",
               "EditorCaption": ""

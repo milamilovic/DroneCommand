@@ -30,9 +30,9 @@ void initializeNoFlyZoneVertices(float noFlyZoneVertices[], float aspectRatio) {
     // Set center point
     noFlyZoneVertices[0] = centerX;      // X
     noFlyZoneVertices[1] = centerY;      // Y
-    noFlyZoneVertices[2] = 1.0;  // R
+    noFlyZoneVertices[2] = 0.8;  // R
     noFlyZoneVertices[3] = 0.0;  // G
-    noFlyZoneVertices[4] = 0.0;  // B
+    noFlyZoneVertices[4] = 0.05;  // B
     noFlyZoneVertices[5] = 0.5;  // A
 
     // Circle points
@@ -44,9 +44,9 @@ void initializeNoFlyZoneVertices(float noFlyZoneVertices[], float aspectRatio) {
         int index = (i + 1) * 6;
         noFlyZoneVertices[index] = x;
         noFlyZoneVertices[index + 1] = y;
-        noFlyZoneVertices[index + 2] = 1.0; // Red
+        noFlyZoneVertices[index + 2] = 0.8; // Red
         noFlyZoneVertices[index + 3] = 0.0; // Green
-        noFlyZoneVertices[index + 4] = 0.0; // Blue
+        noFlyZoneVertices[index + 4] = 0.05; // Blue
         noFlyZoneVertices[index + 5] = 0.5; // Alpha
     }
 }

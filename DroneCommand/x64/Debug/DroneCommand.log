@@ -1,4 +1,8 @@
 ﻿  main.cpp
+D:\faks\DroneCommand\main.cpp(33,28): warning C4305: '=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(35,28): warning C4305: '=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(47,40): warning C4305: '=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(49,40): warning C4305: '=': truncation from 'double' to 'float'
 D:\faks\DroneCommand\main.cpp(172,36): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
 D:\faks\DroneCommand\main.cpp(172,29): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
 D:\faks\DroneCommand\main.cpp(172,22): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
