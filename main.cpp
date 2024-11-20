@@ -14,6 +14,43 @@ unsigned int compileShader(GLenum type, const char* source);
 unsigned int createShader(const char* vsSource, const char* fsSource);
 static unsigned loadImageToTexture(const char* filePath);
 
+struct NoFlyZone {
+    float x, y, radius;
+    bool dragging;
+    bool resizing;
+};
+NoFlyZone noFlyZone = { 0.05f, -0.07f, 0.20f, false, false };
+
+void initializeNoFlyZoneVertices(float noFlyZoneVertices[], float aspectRatio) {
+    const float centerX = noFlyZone.x;
+    const float centerY = noFlyZone.y;
+    const float radius = noFlyZone.radius;
+    const int numPoints = 30;
+
+    // Set center point
+    noFlyZoneVertices[0] = centerX;      // X
+    noFlyZoneVertices[1] = centerY;      // Y
+    noFlyZoneVertices[2] = 1.0;  // R
+    noFlyZoneVertices[3] = 0.0;  // G
+    noFlyZoneVertices[4] = 0.0;  // B
+    noFlyZoneVertices[5] = 0.5;  // A
+
+    // Circle points
+    for (int i = 0; i < numPoints; i++) {
+        float theta = (2.07f * 3.1415f / numPoints) * i;
+        float x = centerX + radius * cos(theta) * aspectRatio;
+        float y = centerY + radius * sin(theta);
+
+        int index = (i + 1) * 6;
+        noFlyZoneVertices[index] = x;
+        noFlyZoneVertices[index + 1] = y;
+        noFlyZoneVertices[index + 2] = 1.0; // Red
+        noFlyZoneVertices[index + 3] = 0.0; // Green
+        noFlyZoneVertices[index + 4] = 0.0; // Blue
+        noFlyZoneVertices[index + 5] = 0.5; // Alpha
+    }
+}
+
 int main(void)
 {
 
@@ -52,6 +89,9 @@ int main(void)
     unsigned int mapShader = createShader("texture.vert", "texture.frag");
     unsigned int basicShader = createShader("basic.vert", "basic.frag");
 
+    float noFlyZoneVertices[186];
+    initializeNoFlyZoneVertices(noFlyZoneVertices, 0.75);
+
     float map[] = {
         // X    Y      S    T
         0.98f,  0.98f,  1.0f, 1.0f, // Top-right
@@ -89,6 +129,27 @@ int main(void)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    //TODO: no fly zone
+    unsigned int noFlyZoneVAO, noFlyZoneVBO;
+    glGenVertexArrays(1, &noFlyZoneVAO);
+    glGenBuffers(1, &noFlyZoneVBO);
+
+    glBindVertexArray(noFlyZoneVAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, noFlyZoneVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(noFlyZoneVertices), noFlyZoneVertices, GL_STATIC_DRAW);
+
+    // Set up the position attribute
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    // Set up the color attribute
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
     
     unsigned mapTexture = loadImageToTexture("res/majevica.png");
     glBindTexture(GL_TEXTURE_2D, mapTexture);
@@ -111,15 +172,24 @@ int main(void)
         glClearColor(0.184, 0.341, 0.227, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        //map texture
         glUseProgram(mapShader);
         glBindVertexArray(VAO);
-
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, mapTexture);
-
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
         glBindTexture(GL_TEXTURE_2D, 0);
+        glBindVertexArray(0);
+        glUseProgram(0);
+
+        //no fly zone
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glUseProgram(basicShader);  // Use the basic shader with color support
+
+        glBindVertexArray(noFlyZoneVAO);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 31); // 30 points + center point
+
         glBindVertexArray(0);
         glUseProgram(0);
 
