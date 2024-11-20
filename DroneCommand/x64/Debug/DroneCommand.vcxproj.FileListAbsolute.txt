@@ -1,0 +1,3 @@
+C:\Users\NTP400-XXXXX\Desktop\RG2024\Teksture\x64\Debug\glew32.dll
+D:\faks\grafika\RG Teksture\Teksture\x64\Debug\glew32.dll
+D:\faks\DroneCommand\x64\Debug\glew32.dll
