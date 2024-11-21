@@ -14,6 +14,117 @@ unsigned int compileShader(GLenum type, const char* source);
 unsigned int createShader(const char* vsSource, const char* fsSource);
 static unsigned loadImageToTexture(const char* filePath);
 
+struct NoFlyZone {
+    float x, y, radius;
+    bool dragging;
+    bool resizing;
+};
+NoFlyZone noFlyZone = { 0.05f, -0.07f, 0.20f, false, false };
+
+void initializeNoFlyZoneVertices(float noFlyZoneVertices[], float aspectRatio) {
+    const float centerX = noFlyZone.x;
+    const float centerY = noFlyZone.y;
+    const float radius = noFlyZone.radius;
+    const int numPoints = 30;
+
+    float R = noFlyZone.resizing ? 0.431f : 0.8f;
+    float G = noFlyZone.resizing ? 0.031f : 0.0f;
+    float B = noFlyZone.resizing ? 0.031f : 0.05f;
+
+    // Set center point
+    noFlyZoneVertices[0] = centerX;      // X
+    noFlyZoneVertices[1] = centerY;      // Y
+    noFlyZoneVertices[2] = R;  // R
+    noFlyZoneVertices[3] = G;  // G
+    noFlyZoneVertices[4] = B;  // B
+    noFlyZoneVertices[5] = 0.5;  // A
+
+    // Circle points
+    for (int i = 0; i < numPoints; i++) {
+        float theta = (2.07f * 3.1415f / numPoints) * i;
+        float x = centerX + radius * cos(theta) * aspectRatio;
+        float y = centerY + radius * sin(theta);
+
+        int index = (i + 1) * 6;
+        noFlyZoneVertices[index] = x;
+        noFlyZoneVertices[index + 1] = y;
+        noFlyZoneVertices[index + 2] = R; // Red
+        noFlyZoneVertices[index + 3] = G; // Green
+        noFlyZoneVertices[index + 4] = B; // Blue
+        noFlyZoneVertices[index + 5] = 0.5; // Alpha
+    }
+}
+
+void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos) {
+    if (noFlyZone.dragging) {
+        int windowWidth, windowHeight;
+        glfwGetWindowSize(window, &windowWidth, &windowHeight);
+
+        float normalizedX = (2.0f * xpos / windowWidth - 1.0f);
+        float normalizedY = -1.0f * (2.0f * ypos / windowHeight - 1.0f);
+
+        float initialRadius = 0.20f;
+        const float minX = -0.87f + (noFlyZone.radius - initialRadius) * 0.75;
+        const float maxX = 0.87f - (noFlyZone.radius - initialRadius) * 0.75;
+        const float minY = -0.51f + noFlyZone.radius - initialRadius;
+        const float maxY = 0.83f - noFlyZone.radius + initialRadius;
+
+        if (normalizedX < minX) normalizedX = minX;
+        if (normalizedX > maxX) normalizedX = maxX;
+        if (normalizedY < minY) normalizedY = minY;
+        if (normalizedY > maxY) normalizedY = maxY;
+
+        noFlyZone.x = normalizedX;
+        noFlyZone.y = normalizedY;
+    }
+}
+
+bool isPointInCircle(float x, float y, float cx, float cy, float radius) {
+    float dx = x - cx;
+    float dy = y - cy;
+    return (dx * dx + dy * dy) <= (radius * radius);
+}
+
+
+void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
+    if (button == GLFW_MOUSE_BUTTON_LEFT) {
+        if (action == GLFW_PRESS) {
+            double xpos, ypos;
+            glfwGetCursorPos(window, &xpos, &ypos);
+
+            int windowWidth, windowHeight;
+            glfwGetWindowSize(window, &windowWidth, &windowHeight);
+
+            float aspectRatio = static_cast<float>(windowWidth) / windowHeight;
+            float normalizedX = (2.0f * xpos / windowWidth - 1.0f) * aspectRatio;
+            float normalizedY = -1.0f * (2.0f * ypos / windowHeight - 1.0f);
+
+            if (isPointInCircle(normalizedX, normalizedY, noFlyZone.x, noFlyZone.y, noFlyZone.radius)) {
+                noFlyZone.dragging = true;
+            }
+        } else if (action == GLFW_RELEASE) {
+            noFlyZone.dragging = false;
+        }
+    } else if (button == GLFW_MOUSE_BUTTON_RIGHT) {
+        if (action == GLFW_PRESS) {
+            double xpos, ypos;
+            glfwGetCursorPos(window, &xpos, &ypos);
+
+            int windowWidth, windowHeight;
+            glfwGetWindowSize(window, &windowWidth, &windowHeight);
+
+            float aspectRatio = static_cast<float>(windowWidth) / windowHeight;
+            float normalizedX = (2.0f * xpos / windowWidth - 1.0f) * aspectRatio;
+            float normalizedY = -1.0f * (2.0f * ypos / windowHeight - 1.0f);
+
+            if (isPointInCircle(normalizedX, normalizedY, noFlyZone.x, noFlyZone.y, noFlyZone.radius)) {
+                noFlyZone.resizing = true;
+            }
+        } else if (action == GLFW_RELEASE) {
+            noFlyZone.resizing = false;
+        }
+    }
+}
 int main(void)
 {
 
@@ -52,12 +163,18 @@ int main(void)
     unsigned int mapShader = createShader("texture.vert", "texture.frag");
     unsigned int basicShader = createShader("basic.vert", "basic.frag");
 
+    glfwSetCursorPosCallback(window, cursorPositionCallback);
+    glfwSetMouseButtonCallback(window, mouseButtonCallback);
+
+    float noFlyZoneVertices[186];
+    initializeNoFlyZoneVertices(noFlyZoneVertices, 0.75);
+
     float map[] = {
         // X    Y      S    T
-        0.98f,  0.98f,  1.0f, 1.0f, // Top-right
-        0.98f, -0.7f,  1.0f, 0.0f, // Bottom-right
-       -0.98f, -0.7f,  0.0f, 0.0f, // Bottom-left
-       -0.98f,  0.98f,  0.0f, 1.0f  // Top-left
+        1.0f,  1.0f,  1.0f, 1.0f, // Top-right
+        1.0f, -0.7f,  1.0f, 0.0f, // Bottom-right
+       -1.0f, -0.7f,  0.0f, 0.0f, // Bottom-left
+       -1.0f,  1.0f,  0.0f, 1.0f  // Top-left
     };
 
     unsigned int indices[] = {
@@ -89,6 +206,27 @@ int main(void)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    //TODO: no fly zone
+    unsigned int noFlyZoneVAO, noFlyZoneVBO;
+    glGenVertexArrays(1, &noFlyZoneVAO);
+    glGenBuffers(1, &noFlyZoneVBO);
+
+    glBindVertexArray(noFlyZoneVAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, noFlyZoneVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(noFlyZoneVertices), noFlyZoneVertices, GL_STATIC_DRAW);
+
+    // Set up the position attribute
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    // Set up the color attribute
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
     
     unsigned mapTexture = loadImageToTexture("res/majevica.png");
     glBindTexture(GL_TEXTURE_2D, mapTexture);
@@ -107,19 +245,50 @@ int main(void)
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, GL_TRUE);
         }
+        if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+            noFlyZone = { 0.05f, -0.07f, 0.20f, false, false };
+        }
 
         glClearColor(0.184, 0.341, 0.227, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        //map texture
         glUseProgram(mapShader);
         glBindVertexArray(VAO);
-
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, mapTexture);
-
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
         glBindTexture(GL_TEXTURE_2D, 0);
+        glBindVertexArray(0);
+        glUseProgram(0);
+
+        //no fly zone
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glUseProgram(basicShader);
+        if (noFlyZone.resizing) {
+            float aspectRatio = 0.75f;
+            float maxXEdge = noFlyZone.x + noFlyZone.radius * aspectRatio;
+            float minXEdge = noFlyZone.x - noFlyZone.radius * aspectRatio;
+            float maxYEdge = noFlyZone.y + noFlyZone.radius;
+            float minYEdge = noFlyZone.y - noFlyZone.radius;
+
+            const float mapMaxX = 1.0f;
+            const float mapMinX = -1.0f;
+            const float mapMaxY = 1.0f;
+            const float mapMinY = -0.7f;
+
+            if (maxXEdge < mapMaxX && minXEdge > mapMinX && maxYEdge < mapMaxY && minYEdge > mapMinY) {
+                noFlyZone.radius += 0.0001f;
+            }
+        }
+        initializeNoFlyZoneVertices(noFlyZoneVertices, 0.75f);
+        glBindBuffer(GL_ARRAY_BUFFER, noFlyZoneVBO);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(noFlyZoneVertices), noFlyZoneVertices);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindVertexArray(noFlyZoneVAO);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 31); // 30 points + center point
+
         glBindVertexArray(0);
         glUseProgram(0);
 
