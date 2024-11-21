@@ -52,8 +52,6 @@ void initializeNoFlyZoneVertices(float noFlyZoneVertices[], float aspectRatio) {
 }
 
 void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos) {
-    static bool dragging = false;
-
     if (noFlyZone.dragging) {
         int windowWidth, windowHeight;
         glfwGetWindowSize(window, &windowWidth, &windowHeight);
@@ -61,10 +59,11 @@ void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos) {
         float normalizedX = (2.0f * xpos / windowWidth - 1.0f);
         float normalizedY = -1.0f * (2.0f * ypos / windowHeight - 1.0f);
 
-        const float minX = -0.87f;
-        const float maxX = 0.87f;
-        const float minY = -0.51f;
-        const float maxY = 0.83f;
+        float initialRadius = 0.20f;
+        const float minX = -0.87f + (noFlyZone.radius - initialRadius) * 0.75;
+        const float maxX = 0.87f - (noFlyZone.radius - initialRadius) * 0.75;
+        const float minY = -0.51f + noFlyZone.radius - initialRadius;
+        const float maxY = 0.83f - noFlyZone.radius + initialRadius;
 
         if (normalizedX < minX) normalizedX = minX;
         if (normalizedX > maxX) normalizedX = maxX;
@@ -99,9 +98,26 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
             if (isPointInCircle(normalizedX, normalizedY, noFlyZone.x, noFlyZone.y, noFlyZone.radius)) {
                 noFlyZone.dragging = true;
             }
-        }
-        else if (action == GLFW_RELEASE) {
+        } else if (action == GLFW_RELEASE) {
             noFlyZone.dragging = false;
+        }
+    } else if (button == GLFW_MOUSE_BUTTON_RIGHT) {
+        if (action == GLFW_PRESS) {
+            double xpos, ypos;
+            glfwGetCursorPos(window, &xpos, &ypos);
+
+            int windowWidth, windowHeight;
+            glfwGetWindowSize(window, &windowWidth, &windowHeight);
+
+            float aspectRatio = static_cast<float>(windowWidth) / windowHeight;
+            float normalizedX = (2.0f * xpos / windowWidth - 1.0f) * aspectRatio;
+            float normalizedY = -1.0f * (2.0f * ypos / windowHeight - 1.0f);
+
+            if (isPointInCircle(normalizedX, normalizedY, noFlyZone.x, noFlyZone.y, noFlyZone.radius)) {
+                noFlyZone.resizing = true;
+            }
+        } else if (action == GLFW_RELEASE) {
+            noFlyZone.resizing = false;
         }
     }
 }
@@ -242,8 +258,26 @@ int main(void)
         //no fly zone
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glUseProgram(basicShader);  // Use the basic shader with color support
+        glUseProgram(basicShader);
+        if (noFlyZone.resizing) {
+            // Calculate the farthest edge of the circle
+            float aspectRatio = 0.75f; // Adjust aspect ratio as required for your window
+            float maxXEdge = noFlyZone.x + noFlyZone.radius * aspectRatio;
+            float minXEdge = noFlyZone.x - noFlyZone.radius * aspectRatio;
+            float maxYEdge = noFlyZone.y + noFlyZone.radius;
+            float minYEdge = noFlyZone.y - noFlyZone.radius;
 
+            // Map boundaries
+            const float mapMaxX = 1.0f;
+            const float mapMinX = -1.0f;
+            const float mapMaxY = 1.0f;
+            const float mapMinY = -0.7f;
+
+            // Check if the circle edges are within bounds
+            if (maxXEdge < mapMaxX && minXEdge > mapMinX && maxYEdge < mapMaxY && minYEdge > mapMinY) {
+                noFlyZone.radius += 0.0001f;
+            }
+        }
         initializeNoFlyZoneVertices(noFlyZoneVertices, 0.75f);
         glBindBuffer(GL_ARRAY_BUFFER, noFlyZoneVBO);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(noFlyZoneVertices), noFlyZoneVertices);
