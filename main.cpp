@@ -312,6 +312,54 @@ int main(void)
         if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
             noFlyZone = { 0.05f, -0.07f, 0.20f, false, false };
         }
+        if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS) {
+            if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
+                drone1.active = true;
+            }
+        }
+        if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS) {
+            if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
+                drone2.active = true;
+            }
+        }
+        if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS) {
+            if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
+                drone1.active = false;
+            }
+        }
+        if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS) {
+            if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
+                drone2.active = false;
+            }
+        }
+        if (drone1.active) {
+            if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+                if(drone1.y < 0.95) drone1.y += 0.0005;
+            }
+            if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+                if (drone1.y > -0.65) drone1.y -= 0.0005;
+            }
+            if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+                if (drone1.x > -0.96) drone1.x -= 0.0005;
+            }
+            if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+                if (drone1.x < 0.96) drone1.x += 0.0005;
+            }
+        }
+        if (drone2.active) {
+            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+                if (drone2.y < 0.95) drone2.y += 0.0005;
+            }
+            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+                if (drone2.y > -0.65) drone2.y -= 0.0005;
+            }
+            if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+                if (drone2.x > -0.96) drone2.x -= 0.0005;
+            }
+            if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+                if (drone2.x < 0.96) drone2.x += 0.0005;
+            }
+        }
 
         float currentTime = glfwGetTime();
         if (currentTime - timeSinceLastUpdate > 0.016f) {  // 60 FPS

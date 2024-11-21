@@ -15,8 +15,16 @@ D:\faks\DroneCommand\main.cpp(136,31): warning C4244: 'initializing': conversion
 D:\faks\DroneCommand\main.cpp(137,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\faks\DroneCommand\main.cpp(154,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\faks\DroneCommand\main.cpp(155,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(316,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(328,36): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-D:\faks\DroneCommand\main.cpp(328,29): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-D:\faks\DroneCommand\main.cpp(328,22): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+D:\faks\DroneCommand\main.cpp(337,49): warning C4305: '+=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(340,51): warning C4305: '-=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(343,51): warning C4305: '-=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(346,50): warning C4305: '+=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(351,50): warning C4305: '+=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(354,51): warning C4305: '-=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(357,51): warning C4305: '-=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(360,50): warning C4305: '+=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(364,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\faks\DroneCommand\main.cpp(376,36): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+D:\faks\DroneCommand\main.cpp(376,29): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+D:\faks\DroneCommand\main.cpp(376,22): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
   DroneCommand.vcxproj -> D:\faks\DroneCommand\x64\Debug\DroneCommand.exe
