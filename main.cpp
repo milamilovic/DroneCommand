@@ -51,6 +51,60 @@ void initializeNoFlyZoneVertices(float noFlyZoneVertices[], float aspectRatio) {
     }
 }
 
+void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos) {
+    static bool dragging = false;
+
+    if (noFlyZone.dragging) {
+        int windowWidth, windowHeight;
+        glfwGetWindowSize(window, &windowWidth, &windowHeight);
+
+        float normalizedX = (2.0f * xpos / windowWidth - 1.0f);
+        float normalizedY = -1.0f * (2.0f * ypos / windowHeight - 1.0f);
+
+        const float minX = -0.87f;
+        const float maxX = 0.87f;
+        const float minY = -0.51f;
+        const float maxY = 0.83f;
+
+        if (normalizedX < minX) normalizedX = minX;
+        if (normalizedX > maxX) normalizedX = maxX;
+        if (normalizedY < minY) normalizedY = minY;
+        if (normalizedY > maxY) normalizedY = maxY;
+
+        noFlyZone.x = normalizedX;
+        noFlyZone.y = normalizedY;
+    }
+}
+
+bool isPointInCircle(float x, float y, float cx, float cy, float radius) {
+    float dx = x - cx;
+    float dy = y - cy;
+    return (dx * dx + dy * dy) <= (radius * radius);
+}
+
+
+void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
+    if (button == GLFW_MOUSE_BUTTON_LEFT) {
+        if (action == GLFW_PRESS) {
+            double xpos, ypos;
+            glfwGetCursorPos(window, &xpos, &ypos);
+
+            int windowWidth, windowHeight;
+            glfwGetWindowSize(window, &windowWidth, &windowHeight);
+
+            float aspectRatio = static_cast<float>(windowWidth) / windowHeight;
+            float normalizedX = (2.0f * xpos / windowWidth - 1.0f) * aspectRatio;
+            float normalizedY = -1.0f * (2.0f * ypos / windowHeight - 1.0f);
+
+            if (isPointInCircle(normalizedX, normalizedY, noFlyZone.x, noFlyZone.y, noFlyZone.radius)) {
+                noFlyZone.dragging = true;
+            }
+        }
+        else if (action == GLFW_RELEASE) {
+            noFlyZone.dragging = false;
+        }
+    }
+}
 int main(void)
 {
 
@@ -89,15 +143,18 @@ int main(void)
     unsigned int mapShader = createShader("texture.vert", "texture.frag");
     unsigned int basicShader = createShader("basic.vert", "basic.frag");
 
+    glfwSetCursorPosCallback(window, cursorPositionCallback);
+    glfwSetMouseButtonCallback(window, mouseButtonCallback);
+
     float noFlyZoneVertices[186];
     initializeNoFlyZoneVertices(noFlyZoneVertices, 0.75);
 
     float map[] = {
         // X    Y      S    T
-        0.98f,  0.98f,  1.0f, 1.0f, // Top-right
-        0.98f, -0.7f,  1.0f, 0.0f, // Bottom-right
-       -0.98f, -0.7f,  0.0f, 0.0f, // Bottom-left
-       -0.98f,  0.98f,  0.0f, 1.0f  // Top-left
+        1.0f,  1.0f,  1.0f, 1.0f, // Top-right
+        1.0f, -0.7f,  1.0f, 0.0f, // Bottom-right
+       -1.0f, -0.7f,  0.0f, 0.0f, // Bottom-left
+       -1.0f,  1.0f,  0.0f, 1.0f  // Top-left
     };
 
     unsigned int indices[] = {
@@ -187,6 +244,10 @@ int main(void)
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glUseProgram(basicShader);  // Use the basic shader with color support
 
+        initializeNoFlyZoneVertices(noFlyZoneVertices, 0.75f);
+        glBindBuffer(GL_ARRAY_BUFFER, noFlyZoneVBO);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(noFlyZoneVertices), noFlyZoneVertices);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(noFlyZoneVAO);
         glDrawArrays(GL_TRIANGLE_FAN, 0, 31); // 30 points + center point
 
