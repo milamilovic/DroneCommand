@@ -241,6 +241,9 @@ int main(void)
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, GL_TRUE);
         }
+        if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+            noFlyZone = { 0.05f, -0.07f, 0.20f, false, false };
+        }
 
         glClearColor(0.184, 0.341, 0.227, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
@@ -260,20 +263,17 @@ int main(void)
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glUseProgram(basicShader);
         if (noFlyZone.resizing) {
-            // Calculate the farthest edge of the circle
-            float aspectRatio = 0.75f; // Adjust aspect ratio as required for your window
+            float aspectRatio = 0.75f;
             float maxXEdge = noFlyZone.x + noFlyZone.radius * aspectRatio;
             float minXEdge = noFlyZone.x - noFlyZone.radius * aspectRatio;
             float maxYEdge = noFlyZone.y + noFlyZone.radius;
             float minYEdge = noFlyZone.y - noFlyZone.radius;
 
-            // Map boundaries
             const float mapMaxX = 1.0f;
             const float mapMinX = -1.0f;
             const float mapMaxY = 1.0f;
             const float mapMinY = -0.7f;
 
-            // Check if the circle edges are within bounds
             if (maxXEdge < mapMaxX && minXEdge > mapMinX && maxYEdge < mapMaxY && minYEdge > mapMinY) {
                 noFlyZone.radius += 0.0001f;
             }

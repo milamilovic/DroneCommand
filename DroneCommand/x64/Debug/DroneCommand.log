@@ -13,7 +13,7 @@ D:\faks\DroneCommand\main.cpp(95,31): warning C4244: 'initializing': conversion 
 D:\faks\DroneCommand\main.cpp(96,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\faks\DroneCommand\main.cpp(113,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\faks\DroneCommand\main.cpp(114,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(245,36): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-D:\faks\DroneCommand\main.cpp(245,29): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-D:\faks\DroneCommand\main.cpp(245,22): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+D:\faks\DroneCommand\main.cpp(248,36): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+D:\faks\DroneCommand\main.cpp(248,29): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+D:\faks\DroneCommand\main.cpp(248,22): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
   DroneCommand.vcxproj -> D:\faks\DroneCommand\x64\Debug\DroneCommand.exe
