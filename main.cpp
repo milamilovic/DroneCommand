@@ -14,6 +14,43 @@ unsigned int compileShader(GLenum type, const char* source);
 unsigned int createShader(const char* vsSource, const char* fsSource);
 static unsigned loadImageToTexture(const char* filePath);
 
+struct Drone {
+    float x, y;
+    float radius;
+    float batteryLevel;
+    bool active;
+};
+Drone drone1 = { -0.5f, -0.5f, 0.05f, 100.0f, false };
+Drone drone2 = { 0.5f, -0.5f, 0.05f, 100.0f, false };
+
+void initializeDroneVertices(const Drone& drone, float vertices[], float aspectRatio) {
+    const float centerX = drone.x;
+    const float centerY = drone.y;
+    const float radius = drone.radius;
+    const int numPoints = 30;
+
+    vertices[0] = drone.x;      // X
+    vertices[1] = drone.y;      // Y
+    vertices[2] = 0.102;  // R
+    vertices[3] = 0.278;  // G
+    vertices[4] = 0.149;  // B
+    vertices[5] = 1.0;  // A
+
+    for (int i = 0; i < numPoints; i++) {
+        float theta = (2.07f * 3.1415f / numPoints) * i;
+        float x = centerX + radius * cos(theta) * aspectRatio;
+        float y = centerY + radius * sin(theta);
+
+        int index = (i + 1) * 6;
+        vertices[index] = x;
+        vertices[index + 1] = y;
+        vertices[index + 2] = 0.102; // Red
+        vertices[index + 3] = 0.278; // Green
+        vertices[index + 4] = 0.149; // Blue
+        vertices[index + 5] = 1.0; // Alpha
+    }
+}
+
 struct NoFlyZone {
     float x, y, radius;
     bool dragging;
@@ -168,6 +205,10 @@ int main(void)
 
     float noFlyZoneVertices[186];
     initializeNoFlyZoneVertices(noFlyZoneVertices, 0.75);
+    float droneVertices1[186];
+    initializeDroneVertices(drone1, droneVertices1, 0.75);
+    float droneVertices2[186];
+    initializeDroneVertices(drone2, droneVertices2, 0.75);
 
     float map[] = {
         // X    Y      S    T
@@ -207,24 +248,45 @@ int main(void)
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-    //TODO: no fly zone
+    //no fly zone
     unsigned int noFlyZoneVAO, noFlyZoneVBO;
     glGenVertexArrays(1, &noFlyZoneVAO);
     glGenBuffers(1, &noFlyZoneVBO);
-
     glBindVertexArray(noFlyZoneVAO);
-
     glBindBuffer(GL_ARRAY_BUFFER, noFlyZoneVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(noFlyZoneVertices), noFlyZoneVertices, GL_STATIC_DRAW);
-
-    // Set up the position attribute
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-
-    // Set up the color attribute
     glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float)));
     glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 
+    //drone 1
+    unsigned int droneVAO1, droneVBO1;
+    glGenVertexArrays(1, &droneVAO1);
+    glGenBuffers(1, &droneVBO1);
+    glBindVertexArray(droneVAO1);
+    glBindBuffer(GL_ARRAY_BUFFER, droneVBO1);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(droneVertices1), droneVertices1, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
+    //drone 2
+    unsigned int droneVAO2, droneVBO2;
+    glGenVertexArrays(1, &droneVAO2);
+    glGenBuffers(1, &droneVBO2);
+    glBindVertexArray(droneVAO2);
+    glBindBuffer(GL_ARRAY_BUFFER, droneVBO2);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(droneVertices2), droneVertices2, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     
@@ -241,12 +303,26 @@ int main(void)
     glUniform1i(uTexLoc, 0);
     glUseProgram(0);
 
+    float timeSinceLastUpdate = 0.0f;
+
     while (!glfwWindowShouldClose(window)) {
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, GL_TRUE);
         }
         if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
             noFlyZone = { 0.05f, -0.07f, 0.20f, false, false };
+        }
+
+        float currentTime = glfwGetTime();
+        if (currentTime - timeSinceLastUpdate > 0.016f) {  // 60 FPS
+            timeSinceLastUpdate = currentTime;
+
+            if (drone1.active && drone1.batteryLevel > 0) {
+                drone1.batteryLevel -= 0.1f;
+            }
+            if (drone2.active && drone2.batteryLevel > 0) {
+                drone2.batteryLevel -= 0.1f;
+            }
         }
 
         glClearColor(0.184, 0.341, 0.227, 1.0f);
@@ -287,7 +363,24 @@ int main(void)
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(noFlyZoneVertices), noFlyZoneVertices);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(noFlyZoneVAO);
-        glDrawArrays(GL_TRIANGLE_FAN, 0, 31); // 30 points + center point
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 31);
+
+        //drone 1
+        initializeDroneVertices(drone1, droneVertices1, 0.75f);
+        glBindBuffer(GL_ARRAY_BUFFER, droneVBO1);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(droneVertices1), droneVertices1);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindVertexArray(droneVAO1);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 31);
+
+        //drone 2
+        initializeDroneVertices(drone2, droneVertices2, 0.75f);
+        glBindBuffer(GL_ARRAY_BUFFER, droneVBO2);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(droneVertices2), droneVertices2);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindVertexArray(droneVAO2);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 31);
+
 
         glBindVertexArray(0);
         glUseProgram(0);
@@ -300,6 +393,12 @@ int main(void)
     glDeleteTextures(1, &mapTexture);
     glDeleteBuffers(1, &VBO);
     glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &noFlyZoneVBO);
+    glDeleteVertexArrays(1, &noFlyZoneVAO);
+    glDeleteBuffers(1, &droneVBO1);
+    glDeleteVertexArrays(1, &droneVAO1);
+    glDeleteBuffers(1, &droneVBO2);
+    glDeleteVertexArrays(1, &droneVAO2);
     glDeleteProgram(mapShader);
 
     glfwTerminate();
