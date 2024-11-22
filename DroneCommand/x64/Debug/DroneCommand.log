@@ -5,26 +5,29 @@ D:\faks\DroneCommand\main.cpp(36,19): warning C4305: '=': truncation from 'doubl
 D:\faks\DroneCommand\main.cpp(47,31): warning C4305: '=': truncation from 'double' to 'float'
 D:\faks\DroneCommand\main.cpp(48,31): warning C4305: '=': truncation from 'double' to 'float'
 D:\faks\DroneCommand\main.cpp(49,31): warning C4305: '=': truncation from 'double' to 'float'
-D:\faks\DroneCommand\main.cpp(100,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(101,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(104,35): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(104,26): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
-D:\faks\DroneCommand\main.cpp(105,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(105,26): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
-D:\faks\DroneCommand\main.cpp(136,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(137,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(154,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(155,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(337,49): warning C4305: '+=': truncation from 'double' to 'float'
-D:\faks\DroneCommand\main.cpp(340,51): warning C4305: '-=': truncation from 'double' to 'float'
-D:\faks\DroneCommand\main.cpp(343,51): warning C4305: '-=': truncation from 'double' to 'float'
-D:\faks\DroneCommand\main.cpp(346,50): warning C4305: '+=': truncation from 'double' to 'float'
-D:\faks\DroneCommand\main.cpp(351,50): warning C4305: '+=': truncation from 'double' to 'float'
-D:\faks\DroneCommand\main.cpp(354,51): warning C4305: '-=': truncation from 'double' to 'float'
-D:\faks\DroneCommand\main.cpp(357,51): warning C4305: '-=': truncation from 'double' to 'float'
-D:\faks\DroneCommand\main.cpp(360,50): warning C4305: '+=': truncation from 'double' to 'float'
-D:\faks\DroneCommand\main.cpp(364,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\faks\DroneCommand\main.cpp(376,36): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-D:\faks\DroneCommand\main.cpp(376,29): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-D:\faks\DroneCommand\main.cpp(376,22): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+D:\faks\DroneCommand\main.cpp(55,14): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(55,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(55,37): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(125,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\faks\DroneCommand\main.cpp(126,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\faks\DroneCommand\main.cpp(129,35): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\faks\DroneCommand\main.cpp(129,26): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+D:\faks\DroneCommand\main.cpp(130,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\faks\DroneCommand\main.cpp(130,26): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+D:\faks\DroneCommand\main.cpp(161,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\faks\DroneCommand\main.cpp(162,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\faks\DroneCommand\main.cpp(179,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\faks\DroneCommand\main.cpp(180,31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\faks\DroneCommand\main.cpp(413,49): warning C4305: '+=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(416,51): warning C4305: '-=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(419,51): warning C4305: '-=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(422,50): warning C4305: '+=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(427,50): warning C4305: '+=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(430,51): warning C4305: '-=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(433,51): warning C4305: '-=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(436,50): warning C4305: '+=': truncation from 'double' to 'float'
+D:\faks\DroneCommand\main.cpp(440,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\faks\DroneCommand\main.cpp(452,36): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+D:\faks\DroneCommand\main.cpp(452,29): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+D:\faks\DroneCommand\main.cpp(452,22): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
   DroneCommand.vcxproj -> D:\faks\DroneCommand\x64\Debug\DroneCommand.exe

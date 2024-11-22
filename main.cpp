@@ -51,6 +51,31 @@ void initializeDroneVertices(const Drone& drone, float vertices[], float aspectR
     }
 }
 
+void initializeProgressVertices(float x, float y, float width, float height, float percentage, float r, float g, float b, float progressBarVertices[]) {
+    float rg = 0.184, gg = 0.22, bg = 0.196;
+
+    float borderXOffset = 0.007f;
+    float borderYOffset = 0.008f;
+
+    float adjustedWidth = width - 2 * borderXOffset;
+
+    float vertices[] = {
+        // Background bar (gray)
+        x, y, rg, gg, bg, 1.0f,
+        x + width, y, rg, gg, bg, 1.0f,
+        x + width, y - height, rg, gg, bg, 1.0f,
+        x, y - height, rg, gg, bg, 1.0f,
+
+        // Filled portion (based on percentage)
+        x + borderXOffset, y - borderYOffset, r, g, b, 1.0f,
+        x + borderXOffset + adjustedWidth * percentage, y - borderYOffset, r, g, b, 1.0f,
+        x + borderXOffset + adjustedWidth * percentage, y - height + borderYOffset, r, g, b, 1.0f,
+        x + borderXOffset, y - height + borderYOffset, r, g, b, 1.0f,
+    };
+
+    memcpy(progressBarVertices, vertices, sizeof(vertices));
+}
+
 struct NoFlyZone {
     float x, y, radius;
     bool dragging;
@@ -209,6 +234,11 @@ int main(void)
     initializeDroneVertices(drone1, droneVertices1, 0.75);
     float droneVertices2[186];
     initializeDroneVertices(drone2, droneVertices2, 0.75);
+    float progressVertices1[48];
+    float progressVertices2[48];
+    initializeProgressVertices(-0.9f, -0.74f, 0.4f, 0.08f, drone1.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices1);
+    initializeProgressVertices(-0.9f, -0.86f, 0.4f, 0.08f, drone2.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices2);
+
 
     float map[] = {
         // X    Y      S    T
@@ -289,6 +319,52 @@ int main(void)
     glEnableVertexAttribArray(1);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+
+    unsigned int progressIndices1[] = {
+        0, 1, 2, 2, 3, 0, // Background
+        4, 5, 6, 6, 7, 4  // Filled portion
+    };
+
+    unsigned int progressIndices2[] = {
+        0, 1, 2, 2, 3, 0, // Background
+        4, 5, 6, 6, 7, 4  // Filled portion
+    };
+
+    //progress bar 1
+    unsigned int progressVAO1, progressVBO1, progressEBO1;
+    glGenVertexArrays(1, &progressVAO1);
+    glGenBuffers(1, &progressVBO1);
+    glGenBuffers(1, &progressEBO1);
+    glBindVertexArray(progressVAO1);
+    glBindBuffer(GL_ARRAY_BUFFER, progressVBO1);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(progressVertices1), progressVertices1, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, progressEBO1);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(progressIndices1), progressIndices1, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    //progress bar 2
+    unsigned int progressVAO2, progressVBO2, progressEBO2;
+    glGenVertexArrays(1, &progressVAO2);
+    glGenBuffers(1, &progressVBO2);
+    glGenBuffers(1, &progressEBO2);
+    glBindVertexArray(progressVAO2);
+    glBindBuffer(GL_ARRAY_BUFFER, progressVBO2);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(progressVertices2), progressVertices2, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, progressEBO2);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(progressIndices2), progressIndices2, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     
     unsigned mapTexture = loadImageToTexture("res/majevica.png");
     glBindTexture(GL_TEXTURE_2D, mapTexture);
@@ -429,6 +505,26 @@ int main(void)
         glBindVertexArray(droneVAO2);
         glDrawArrays(GL_TRIANGLE_FAN, 0, 31);
 
+        //progress bar 1
+        initializeProgressVertices(-0.9f, -0.74f, 0.4f, 0.08f, drone1.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices1);
+        glBindVertexArray(progressVAO1);
+        glBindBuffer(GL_ARRAY_BUFFER, progressVBO1);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(progressVertices1), progressVertices1);  // Update buffer data
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glUseProgram(basicShader);
+        glBindVertexArray(progressVAO1);
+        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        glUseProgram(0);
+
+        initializeProgressVertices(-0.9f, -0.86f, 0.4f, 0.08f, drone2.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices2);
+        glBindVertexArray(progressVAO2);
+        glBindBuffer(GL_ARRAY_BUFFER, progressVBO2);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(progressVertices2), progressVertices2);  // Update buffer data
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glUseProgram(basicShader);
+        glBindVertexArray(progressVAO2);
+        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
 
         glBindVertexArray(0);
         glUseProgram(0);
@@ -447,6 +543,12 @@ int main(void)
     glDeleteVertexArrays(1, &droneVAO1);
     glDeleteBuffers(1, &droneVBO2);
     glDeleteVertexArrays(1, &droneVAO2);
+    glDeleteVertexArrays(1, &progressVAO1);
+    glDeleteBuffers(1, &progressVBO1);
+    glDeleteBuffers(1, &progressEBO1);
+    glDeleteVertexArrays(1, &progressVAO2);
+    glDeleteBuffers(1, &progressVBO2);
+    glDeleteBuffers(1, &progressEBO2);
     glDeleteProgram(mapShader);
 
     glfwTerminate();
