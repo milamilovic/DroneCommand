@@ -7,20 +7,20 @@
       "RelativeMoniker": "D:0:0:{EC504904-6D9A-4E9B-8926-2B453C6C69B4}|DroneCommand.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{EC504904-6D9A-4E9B-8926-2B453C6C69B4}|DroneCommand.vcxproj|D:\\faks\\DroneCommand\\map.vert||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EC504904-6D9A-4E9B-8926-2B453C6C69B4}|DroneCommand.vcxproj|solutionrelative:map.vert||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EC504904-6D9A-4E9B-8926-2B453C6C69B4}|DroneCommand.vcxproj|D:\\faks\\DroneCommand\\map.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EC504904-6D9A-4E9B-8926-2B453C6C69B4}|DroneCommand.vcxproj|solutionrelative:map.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EC504904-6D9A-4E9B-8926-2B453C6C69B4}|DroneCommand.vcxproj|D:\\faks\\DroneCommand\\basic.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{EC504904-6D9A-4E9B-8926-2B453C6C69B4}|DroneCommand.vcxproj|solutionrelative:basic.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EC504904-6D9A-4E9B-8926-2B453C6C69B4}|DroneCommand.vcxproj|D:\\faks\\DroneCommand\\basic.vert||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{EC504904-6D9A-4E9B-8926-2B453C6C69B4}|DroneCommand.vcxproj|solutionrelative:basic.vert||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\faks\\DroneCommand\\texture.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:texture.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\faks\\DroneCommand\\texture.vert||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:texture.vert||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,19 +34,20 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "texture.vert",
-              "DocumentMoniker": "D:\\faks\\DroneCommand\\texture.vert",
-              "RelativeDocumentMoniker": "texture.vert",
-              "ToolTip": "D:\\faks\\DroneCommand\\texture.vert",
-              "RelativeToolTip": "texture.vert",
+              "DocumentIndex": 1,
+              "Title": "map.vert",
+              "DocumentMoniker": "D:\\faks\\DroneCommand\\map.vert",
+              "RelativeDocumentMoniker": "map.vert",
+              "ToolTip": "D:\\faks\\DroneCommand\\map.vert",
+              "RelativeToolTip": "map.vert",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-11-20T16:24:06.63Z"
+              "WhenOpened": "2024-11-20T16:24:06.63Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "basic.vert",
               "DocumentMoniker": "D:\\faks\\DroneCommand\\basic.vert",
               "RelativeDocumentMoniker": "basic.vert",
@@ -58,7 +59,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "basic.frag",
               "DocumentMoniker": "D:\\faks\\DroneCommand\\basic.frag",
               "RelativeDocumentMoniker": "basic.frag",
@@ -70,15 +71,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "texture.frag",
-              "DocumentMoniker": "D:\\faks\\DroneCommand\\texture.frag",
-              "RelativeDocumentMoniker": "texture.frag",
-              "ToolTip": "D:\\faks\\DroneCommand\\texture.frag",
-              "RelativeToolTip": "texture.frag",
+              "DocumentIndex": 2,
+              "Title": "map.frag",
+              "DocumentMoniker": "D:\\faks\\DroneCommand\\map.frag",
+              "RelativeDocumentMoniker": "map.frag",
+              "ToolTip": "D:\\faks\\DroneCommand\\map.frag",
+              "RelativeToolTip": "map.frag",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-11-20T16:22:48.599Z"
+              "WhenOpened": "2024-11-20T16:22:48.599Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -88,7 +90,7 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "D:\\faks\\DroneCommand\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAPUBAAAAAAAAAAAAAA4CAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAANcDAAAAAAAAAAAwwPoDAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-20T15:52:28.254Z",
               "EditorCaption": ""

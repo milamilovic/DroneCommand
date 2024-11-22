@@ -187,6 +187,7 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
         }
     }
 }
+
 int main(void)
 {
 
@@ -222,7 +223,8 @@ int main(void)
         return 3;
     }
 
-    unsigned int mapShader = createShader("texture.vert", "texture.frag");
+    unsigned int mapShader = createShader("map.vert", "map.frag");
+    unsigned int textureShader = createShader("texture.vert", "texture.frag");
     unsigned int basicShader = createShader("basic.vert", "basic.frag");
 
     glfwSetCursorPosCallback(window, cursorPositionCallback);
@@ -365,6 +367,284 @@ int main(void)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    //battery level 1
+    float rectangleVertices11[] = {
+        // Positions        // Texture Coords
+        -0.73f, -0.76f,       0.0f, 1.0f,
+        -0.73f, -0.80f,       0.0f, 0.0f,
+        -0.71f, -0.80f,       1.0f, 0.0f,
+        -0.71f, -0.76f,       1.0f, 1.0f
+    };
+    float rectangleVertices12[] = {
+        // Positions        // Texture Coords
+        -0.71f, -0.76f,       0.0f, 1.0f,
+        -0.71f, -0.80f,       0.0f, 0.0f,
+        -0.69f, -0.80f,       1.0f, 0.0f,
+        -0.69f, -0.76f,       1.0f, 1.0f
+    };
+    float rectangleVertices13[] = {
+        // Positions        // Texture Coords
+        -0.69f, -0.76f,       0.0f, 1.0f,
+        -0.69f, -0.80f,       0.0f, 0.0f,
+        -0.67f, -0.80f,       1.0f, 0.0f,
+        -0.67f, -0.76f,       1.0f, 1.0f
+    };
+    unsigned int batteryIndices1[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int batteryIndices2[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int batteryIndices3[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int batteryVao1[3], batteryVbo1[3], batteryEbo1[3];
+    glGenVertexArrays(3, batteryVao1);
+    glGenBuffers(3, batteryVbo1);
+    glGenBuffers(3, batteryEbo1);
+    //first number
+    glBindVertexArray(batteryVao1[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, batteryVbo1[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(rectangleVertices11), rectangleVertices11, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, batteryEbo1[0]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(batteryIndices1), batteryIndices1, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //second number
+    glBindVertexArray(batteryVao1[1]);
+    glBindBuffer(GL_ARRAY_BUFFER, batteryVbo1[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(rectangleVertices12), rectangleVertices12, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, batteryEbo1[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(batteryIndices2), batteryIndices2, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //third number
+    glBindVertexArray(batteryVao1[2]);
+    glBindBuffer(GL_ARRAY_BUFFER, batteryVbo1[2]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(rectangleVertices13), rectangleVertices13, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, batteryEbo1[2]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(batteryIndices3), batteryIndices3, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    //battery level 2
+    float rectangleVertices21[] = {
+        // Positions        // Texture Coords
+        -0.73f, -0.88f,       0.0f, 1.0f,
+        -0.73f, -0.92f,       0.0f, 0.0f,
+        -0.71f, -0.92f,       1.0f, 0.0f,
+        -0.71f, -0.88f,       1.0f, 1.0f
+    };
+    float rectangleVertices22[] = {
+        // Positions        // Texture Coords
+        -0.71f, -0.88f,       0.0f, 1.0f,
+        -0.71f, -0.92f,       0.0f, 0.0f,
+        -0.69f, -0.92f,       1.0f, 0.0f,
+        -0.69f, -0.88f,       1.0f, 1.0f
+    };
+    float rectangleVertices23[] = {
+        // Positions        // Texture Coords
+        -0.69f, -0.88f,       0.0f, 1.0f,
+        -0.69f, -0.92f,       0.0f, 0.0f,
+        -0.67f, -0.92f,       1.0f, 0.0f,
+        -0.67f, -0.88f,       1.0f, 1.0f
+    };
+    unsigned int batteryIndices21[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int batteryIndices22[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int batteryIndices23[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int batteryVao2[3], batteryVbo2[3], batteryEbo2[3];
+    glGenVertexArrays(3, batteryVao2);
+    glGenBuffers(3, batteryVbo2);
+    glGenBuffers(3, batteryEbo2);
+    //first number
+    glBindVertexArray(batteryVao2[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, batteryVbo2[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(rectangleVertices21), rectangleVertices21, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, batteryEbo2[0]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(batteryIndices21), batteryIndices21, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //second number
+    glBindVertexArray(batteryVao2[1]);
+    glBindBuffer(GL_ARRAY_BUFFER, batteryVbo2[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(rectangleVertices22), rectangleVertices22, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, batteryEbo2[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(batteryIndices22), batteryIndices22, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //third number
+    glBindVertexArray(batteryVao2[2]);
+    glBindBuffer(GL_ARRAY_BUFFER, batteryVbo2[2]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(rectangleVertices23), rectangleVertices23, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, batteryEbo2[2]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(batteryIndices23), batteryIndices23, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    // 1 texture
+    unsigned texture1 = loadImageToTexture("res/1.png");
+    glBindTexture(GL_TEXTURE_2D, texture1);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    unsigned uTexLoc = glGetUniformLocation(textureShader, "uTex");
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // 2 texture
+    unsigned texture2 = loadImageToTexture("res/2.png");
+    glBindTexture(GL_TEXTURE_2D, texture2);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // 3 texture
+    unsigned texture3 = loadImageToTexture("res/3.png");
+    glBindTexture(GL_TEXTURE_2D, texture3);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // 4 texture
+    unsigned texture4 = loadImageToTexture("res/4.png");
+    glBindTexture(GL_TEXTURE_2D, texture4);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // 5 texture
+    unsigned texture5 = loadImageToTexture("res/5.png");
+    glBindTexture(GL_TEXTURE_2D, texture5);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // 6 texture
+    unsigned texture6 = loadImageToTexture("res/6.png");
+    glBindTexture(GL_TEXTURE_2D, texture6);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // 7 texture
+    unsigned texture7 = loadImageToTexture("res/7.png");
+    glBindTexture(GL_TEXTURE_2D, texture7);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // 8 texture
+    unsigned texture8 = loadImageToTexture("res/8.png");
+    glBindTexture(GL_TEXTURE_2D, texture8);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // 9 texture
+    unsigned texture9 = loadImageToTexture("res/9.png");
+    glBindTexture(GL_TEXTURE_2D, texture9);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // 0 texture
+    unsigned texture0 = loadImageToTexture("res/0.png");
+    glBindTexture(GL_TEXTURE_2D, texture0);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
     
     unsigned mapTexture = loadImageToTexture("res/majevica.png");
     glBindTexture(GL_TEXTURE_2D, mapTexture);
@@ -375,11 +655,12 @@ int main(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glBindTexture(GL_TEXTURE_2D, 0);
     glUseProgram(mapShader);
-    unsigned uTexLoc = glGetUniformLocation(mapShader, "uTex");
-    glUniform1i(uTexLoc, 0);
+    unsigned uTexLoc2 = glGetUniformLocation(mapShader, "uTex");
+    glUniform1i(uTexLoc2, 0);
     glUseProgram(0);
 
     float timeSinceLastUpdate = 0.0f;
+
 
     while (!glfwWindowShouldClose(window)) {
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
@@ -517,6 +798,7 @@ int main(void)
         glBindVertexArray(0);
         glUseProgram(0);
 
+        //progress bar 2
         initializeProgressVertices(-0.9f, -0.86f, 0.4f, 0.08f, drone2.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices2);
         glBindVertexArray(progressVAO2);
         glBindBuffer(GL_ARRAY_BUFFER, progressVBO2);
@@ -525,6 +807,312 @@ int main(void)
         glUseProgram(basicShader);
         glBindVertexArray(progressVAO2);
         glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
+
+
+        int hundreds, tens, ones;
+        int battery = static_cast<int>(round(drone1.batteryLevel));
+        hundreds = battery / 100;
+        tens = (battery / 10) % 10;
+        ones = battery % 10;
+
+        // Draw hundreds digit for Drone 1
+        glUseProgram(textureShader);
+        glActiveTexture(GL_TEXTURE0);
+        switch (hundreds) {
+            case 0: {
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            case 2: {
+                glBindTexture(GL_TEXTURE_2D, texture2);
+                break;
+            }
+            case 3: {
+                glBindTexture(GL_TEXTURE_2D, texture3);
+                break;
+            }
+            case 4: {
+                glBindTexture(GL_TEXTURE_2D, texture4);
+                break;
+            }
+            case 5: {
+                glBindTexture(GL_TEXTURE_2D, texture5);
+                break;
+            }
+            case 6: {
+                glBindTexture(GL_TEXTURE_2D, texture6);
+                break;
+            }
+            case 7: {
+                glBindTexture(GL_TEXTURE_2D, texture7);
+                break;
+            }
+            case 8: {
+                glBindTexture(GL_TEXTURE_2D, texture8);
+                break;
+            }
+            case 9: {
+                glBindTexture(GL_TEXTURE_2D, texture9);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+        }
+        if (hundreds != 0) {
+            glBindVertexArray(batteryVao1[0]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+        }
+        // Draw tens digit for Drone 1
+        switch (tens) {
+        case 0: {
+            glBindTexture(GL_TEXTURE_2D, texture0);
+            break;
+        }
+        case 1: {
+            glBindTexture(GL_TEXTURE_2D, texture1);
+            break;
+        }
+        case 2: {
+            glBindTexture(GL_TEXTURE_2D, texture2);
+            break;
+        }
+        case 3: {
+            glBindTexture(GL_TEXTURE_2D, texture3);
+            break;
+        }
+        case 4: {
+            glBindTexture(GL_TEXTURE_2D, texture4);
+            break;
+        }
+        case 5: {
+            glBindTexture(GL_TEXTURE_2D, texture5);
+            break;
+        }
+        case 6: {
+            glBindTexture(GL_TEXTURE_2D, texture6);
+            break;
+        }
+        case 7: {
+            glBindTexture(GL_TEXTURE_2D, texture7);
+            break;
+        }
+        case 8: {
+            glBindTexture(GL_TEXTURE_2D, texture8);
+            break;
+        }
+        case 9: {
+            glBindTexture(GL_TEXTURE_2D, texture9);
+            break;
+        }
+        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+        }
+        glBindVertexArray(batteryVao1[1]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+
+        // Draw ones digit for Drone 1
+        switch (ones) {
+        case 0: {
+            glBindTexture(GL_TEXTURE_2D, texture0);
+            break;
+        }
+        case 1: {
+            glBindTexture(GL_TEXTURE_2D, texture1);
+            break;
+        }
+        case 2: {
+            glBindTexture(GL_TEXTURE_2D, texture2);
+            break;
+        }
+        case 3: {
+            glBindTexture(GL_TEXTURE_2D, texture3);
+            break;
+        }
+        case 4: {
+            glBindTexture(GL_TEXTURE_2D, texture4);
+            break;
+        }
+        case 5: {
+            glBindTexture(GL_TEXTURE_2D, texture5);
+            break;
+        }
+        case 6: {
+            glBindTexture(GL_TEXTURE_2D, texture6);
+            break;
+        }
+        case 7: {
+            glBindTexture(GL_TEXTURE_2D, texture7);
+            break;
+        }
+        case 8: {
+            glBindTexture(GL_TEXTURE_2D, texture8);
+            break;
+        }
+        case 9: {
+            glBindTexture(GL_TEXTURE_2D, texture9);
+            break;
+        }
+        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+        }
+        glBindVertexArray(batteryVao1[2]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+
+        // Process battery level for Drone 2
+        battery = static_cast<int>(round(drone2.batteryLevel));
+        hundreds = battery / 100;
+        tens = (battery / 10) % 10;
+        ones = battery % 10;
+
+        // Draw hundreds digit for Drone 2
+        switch (hundreds) {
+        case 0: {
+            //glBindTexture(GL_TEXTURE_2D, texture0);
+            break;
+        }
+        case 1: {
+            glBindTexture(GL_TEXTURE_2D, texture1);
+            break;
+        }
+        case 2: {
+            glBindTexture(GL_TEXTURE_2D, texture2);
+            break;
+        }
+        case 3: {
+            glBindTexture(GL_TEXTURE_2D, texture3);
+            break;
+        }
+        case 4: {
+            glBindTexture(GL_TEXTURE_2D, texture4);
+            break;
+        }
+        case 5: {
+            glBindTexture(GL_TEXTURE_2D, texture5);
+            break;
+        }
+        case 6: {
+            glBindTexture(GL_TEXTURE_2D, texture6);
+            break;
+        }
+        case 7: {
+            glBindTexture(GL_TEXTURE_2D, texture7);
+            break;
+        }
+        case 8: {
+            glBindTexture(GL_TEXTURE_2D, texture8);
+            break;
+        }
+        case 9: {
+            glBindTexture(GL_TEXTURE_2D, texture9);
+            break;
+        }
+        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+        }
+
+        if (hundreds != 0) {
+            glBindVertexArray(batteryVao2[0]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+        }
+
+        // Draw tens digit for Drone 2
+        switch (tens) {
+        case 0: {
+            glBindTexture(GL_TEXTURE_2D, texture0);
+            break;
+        }
+        case 1: {
+            glBindTexture(GL_TEXTURE_2D, texture1);
+            break;
+        }
+        case 2: {
+            glBindTexture(GL_TEXTURE_2D, texture2);
+            break;
+        }
+        case 3: {
+            glBindTexture(GL_TEXTURE_2D, texture3);
+            break;
+        }
+        case 4: {
+            glBindTexture(GL_TEXTURE_2D, texture4);
+            break;
+        }
+        case 5: {
+            glBindTexture(GL_TEXTURE_2D, texture5);
+            break;
+        }
+        case 6: {
+            glBindTexture(GL_TEXTURE_2D, texture6);
+            break;
+        }
+        case 7: {
+            glBindTexture(GL_TEXTURE_2D, texture7);
+            break;
+        }
+        case 8: {
+            glBindTexture(GL_TEXTURE_2D, texture8);
+            break;
+        }
+        case 9: {
+            glBindTexture(GL_TEXTURE_2D, texture9);
+            break;
+        }
+        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+        }
+        glBindVertexArray(batteryVao2[1]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+
+        // Draw ones digit for Drone 2
+        switch (ones) {
+        case 0: {
+            glBindTexture(GL_TEXTURE_2D, texture0);
+            break;
+        }
+        case 1: {
+            glBindTexture(GL_TEXTURE_2D, texture1);
+            break;
+        }
+        case 2: {
+            glBindTexture(GL_TEXTURE_2D, texture2);
+            break;
+        }
+        case 3: {
+            glBindTexture(GL_TEXTURE_2D, texture3);
+            break;
+        }
+        case 4: {
+            glBindTexture(GL_TEXTURE_2D, texture4);
+            break;
+        }
+        case 5: {
+            glBindTexture(GL_TEXTURE_2D, texture5);
+            break;
+        }
+        case 6: {
+            glBindTexture(GL_TEXTURE_2D, texture6);
+            break;
+        }
+        case 7: {
+            glBindTexture(GL_TEXTURE_2D, texture7);
+            break;
+        }
+        case 8: {
+            glBindTexture(GL_TEXTURE_2D, texture8);
+            break;
+        }
+        case 9: {
+            glBindTexture(GL_TEXTURE_2D, texture9);
+            break;
+        }
+        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+        }
+        glBindVertexArray(batteryVao2[2]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
 
         glBindVertexArray(0);
         glUseProgram(0);
@@ -549,7 +1137,14 @@ int main(void)
     glDeleteVertexArrays(1, &progressVAO2);
     glDeleteBuffers(1, &progressVBO2);
     glDeleteBuffers(1, &progressEBO2);
+    glDeleteVertexArrays(3, batteryVao1);
+    glDeleteBuffers(3, batteryVbo1);
+    glDeleteBuffers(3, batteryEbo1);
+    glDeleteVertexArrays(3, batteryVao2);
+    glDeleteBuffers(3, batteryVbo2);
+    glDeleteBuffers(3, batteryEbo2);
     glDeleteProgram(mapShader);
+    glDeleteProgram(textureShader);
 
     glfwTerminate();
     return 0;
