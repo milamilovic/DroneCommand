@@ -238,8 +238,8 @@ int main(void)
     initializeDroneVertices(drone2, droneVertices2, 0.75);
     float progressVertices1[48];
     float progressVertices2[48];
-    initializeProgressVertices(-0.9f, -0.74f, 0.4f, 0.08f, drone1.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices1);
-    initializeProgressVertices(-0.9f, -0.86f, 0.4f, 0.08f, drone2.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices2);
+    initializeProgressVertices(-0.9f, -0.86f, 0.4f, 0.08f, drone1.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices1);
+    initializeProgressVertices(-0.9f, -0.86f, 0.6f, 0.08f, drone2.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices2);
 
 
     float map[] = {
@@ -449,24 +449,24 @@ int main(void)
     //battery level 2
     float rectangleVertices21[] = {
         // Positions        // Texture Coords
-        -0.73f, -0.88f,       0.0f, 1.0f,
-        -0.73f, -0.92f,       0.0f, 0.0f,
-        -0.71f, -0.92f,       1.0f, 0.0f,
-        -0.71f, -0.88f,       1.0f, 1.0f
+        -0.23f, -0.76f,       0.0f, 1.0f,
+        -0.23f, -0.80f,       0.0f, 0.0f,
+        -0.21f, -0.80f,       1.0f, 0.0f,
+        -0.21f, -0.76f,       1.0f, 1.0f
     };
     float rectangleVertices22[] = {
         // Positions        // Texture Coords
-        -0.71f, -0.88f,       0.0f, 1.0f,
-        -0.71f, -0.92f,       0.0f, 0.0f,
-        -0.69f, -0.92f,       1.0f, 0.0f,
-        -0.69f, -0.88f,       1.0f, 1.0f
+        -0.21f, -0.76f,       0.0f, 1.0f,
+        -0.21f, -0.80f,       0.0f, 0.0f,
+        -0.19f, -0.80f,       1.0f, 0.0f,
+        -0.19f, -0.76f,       1.0f, 1.0f
     };
     float rectangleVertices23[] = {
         // Positions        // Texture Coords
-        -0.69f, -0.88f,       0.0f, 1.0f,
-        -0.69f, -0.92f,       0.0f, 0.0f,
-        -0.67f, -0.92f,       1.0f, 0.0f,
-        -0.67f, -0.88f,       1.0f, 1.0f
+        -0.19f, -0.76f,       0.0f, 1.0f,
+        -0.19f, -0.80f,       0.0f, 0.0f,
+        -0.17f, -0.80f,       1.0f, 0.0f,
+        -0.17f, -0.76f,       1.0f, 1.0f
     };
     unsigned int batteryIndices21[] = {
         0, 1, 3,
@@ -527,59 +527,59 @@ int main(void)
     //coordinates 1 : X
     float coordinates1x[] = {
         // Positions        // Texture Coords
-        -0.40f, -0.76f,       0.0f, 1.0f,
-        -0.40f, -0.80f,       0.0f, 0.0f,
-        -0.375f, -0.80f,       1.0f, 0.0f,
-        -0.375f, -0.76f,       1.0f, 1.0f
+        -0.90f, -0.86f,       0.0f, 1.0f,
+        -0.90f, -0.90f,       0.0f, 0.0f,
+        -0.875f, -0.90f,       1.0f, 0.0f,
+        -0.875f, -0.86f,       1.0f, 1.0f
     };
     float coordinates1dot1[] = {
         // Positions        // Texture Coords
-        -0.37f, -0.77f,       0.0f, 1.0f,
-        -0.37f, -0.775f,       0.0f, 0.0f,
-        -0.375f, -0.775f,       1.0f, 0.0f,
-        -0.375f, -0.77f,       1.0f, 1.0f
+        -0.87f, -0.87f,       0.0f, 1.0f,
+        -0.87f, -0.875f,       0.0f, 0.0f,
+        -0.875f, -0.875f,       1.0f, 0.0f,
+        -0.875f, -0.87f,       1.0f, 1.0f
     };
     float coordinates1dot2[] = {
         // Positions        // Texture Coords
-        -0.37f, -0.78f,       0.0f, 1.0f,
-        -0.37f, -0.785f,       0.0f, 0.0f,
-        -0.375f, -0.785f,       1.0f, 0.0f,
-        -0.375f, -0.78f,       1.0f, 1.0f
+        -0.87f, -0.88f,       0.0f, 1.0f,
+        -0.87f, -0.885f,       0.0f, 0.0f,
+        -0.875f, -0.885f,       1.0f, 0.0f,
+        -0.875f, -0.88f,       1.0f, 1.0f
     };
     float coordinates1minus[] = {
         // Positions        // Texture Coords
-        -0.35f, -0.775f,       0.0f, 1.0f,
-        -0.35f, -0.78f,       0.0f, 0.0f,
-        -0.34f, -0.78f,       1.0f, 0.0f,
-        -0.34f, -0.775f,       1.0f, 1.0f
+        -0.85f, -0.875f,       0.0f, 1.0f,
+        -0.85f, -0.88f,       0.0f, 0.0f,
+        -0.84f, -0.88f,       1.0f, 0.0f,
+        -0.84f, -0.875f,       1.0f, 1.0f
     };
     float coordinates1num1[] = {
         // Positions        // Texture Coords
-        -0.33f, -0.76f,       0.0f, 1.0f,
-        -0.33f, -0.80f,       0.0f, 0.0f,
-        -0.31f, -0.80f,       1.0f, 0.0f,
-        -0.31f, -0.76f,       1.0f, 1.0f
+        -0.83f, -0.86f,       0.0f, 1.0f,
+        -0.83f, -0.90f,       0.0f, 0.0f,
+        -0.81f, -0.90f,       1.0f, 0.0f,
+        -0.81f, -0.86f,       1.0f, 1.0f
     };
     float coordinates1dot[] = {
         // Positions        // Texture Coords
-        -0.30f, -0.79f,       0.0f, 1.0f,
-        -0.30f, -0.795f,       0.0f, 0.0f,
-        -0.305f, -0.795f,       1.0f, 0.0f,
-        -0.305f, -0.79f,       1.0f, 1.0f
+        -0.80f, -0.89f,       0.0f, 1.0f,
+        -0.80f, -0.895f,       0.0f, 0.0f,
+        -0.805f, -0.895f,       1.0f, 0.0f,
+        -0.805f, -0.89f,       1.0f, 1.0f
     };
     float coordinates1num2[] = {
         // Positions        // Texture Coords
-        -0.29f, -0.76f,       0.0f, 1.0f,
-        -0.29f, -0.80f,       0.0f, 0.0f,
-        -0.27f, -0.80f,       1.0f, 0.0f,
-        -0.27f, -0.76f,       1.0f, 1.0f
+        -0.79f, -0.86f,       0.0f, 1.0f,
+        -0.79f, -0.90f,       0.0f, 0.0f,
+        -0.77f, -0.90f,       1.0f, 0.0f,
+        -0.77f, -0.86f,       1.0f, 1.0f
     };
     float coordinates1num3[] = {
         // Positions        // Texture Coords
-        -0.27f, -0.76f,       0.0f, 1.0f,
-        -0.27f, -0.80f,       0.0f, 0.0f,
-        -0.25f, -0.80f,       1.0f, 0.0f,
-        -0.25f, -0.76f,       1.0f, 1.0f
+        -0.77f, -0.86f,       0.0f, 1.0f,
+        -0.77f, -0.90f,       0.0f, 0.0f,
+        -0.75f, -0.90f,       1.0f, 0.0f,
+        -0.75f, -0.86f,       1.0f, 1.0f
     };
     unsigned int indices1x[] = {
         0, 1, 3,
@@ -726,59 +726,59 @@ int main(void)
     //coordinates 1 : Y
     float coordinates1y[] = {
         // Positions        // Texture Coords
-        -0.20f, -0.76f,       0.0f, 1.0f,
-        -0.20f, -0.80f,       0.0f, 0.0f,
-        -0.175f, -0.80f,       1.0f, 0.0f,
-        -0.175f, -0.76f,       1.0f, 1.0f
+        -0.70f, -0.86f,       0.0f, 1.0f,
+        -0.70f, -0.90f,       0.0f, 0.0f,
+        -0.675f, -0.90f,       1.0f, 0.0f,
+        -0.675f, -0.86f,       1.0f, 1.0f
     };
     float coordinates1dot1y[] = {
         // Positions        // Texture Coords
-        -0.17f, -0.77f,       0.0f, 1.0f,
-        -0.17f, -0.775f,       0.0f, 0.0f,
-        -0.175f, -0.775f,       1.0f, 0.0f,
-        -0.175f, -0.77f,       1.0f, 1.0f
+        -0.67f, -0.87f,       0.0f, 1.0f,
+        -0.67f, -0.875f,       0.0f, 0.0f,
+        -0.675f, -0.875f,       1.0f, 0.0f,
+        -0.675f, -0.87f,       1.0f, 1.0f
     };
     float coordinates1dot2y[] = {
         // Positions        // Texture Coords
-        -0.17f, -0.78f,       0.0f, 1.0f,
-        -0.17f, -0.785f,       0.0f, 0.0f,
-        -0.175f, -0.785f,       1.0f, 0.0f,
-        -0.175f, -0.78f,       1.0f, 1.0f
+        -0.67f, -0.88f,       0.0f, 1.0f,
+        -0.67f, -0.885f,       0.0f, 0.0f,
+        -0.675f, -0.885f,       1.0f, 0.0f,
+        -0.675f, -0.88f,       1.0f, 1.0f
     };
     float coordinates1minusy[] = {
         // Positions        // Texture Coords
-        -0.15f, -0.775f,       0.0f, 1.0f,
-        -0.15f, -0.78f,       0.0f, 0.0f,
-        -0.14f, -0.78f,       1.0f, 0.0f,
-        -0.14f, -0.775f,       1.0f, 1.0f
+        -0.65f, -0.875f,       0.0f, 1.0f,
+        -0.65f, -0.88f,       0.0f, 0.0f,
+        -0.64f, -0.88f,       1.0f, 0.0f,
+        -0.64f, -0.875f,       1.0f, 1.0f
     };
     float coordinates1num1y[] = {
         // Positions        // Texture Coords
-        -0.13f, -0.76f,       0.0f, 1.0f,
-        -0.13f, -0.80f,       0.0f, 0.0f,
-        -0.11f, -0.80f,       1.0f, 0.0f,
-        -0.11f, -0.76f,       1.0f, 1.0f
+        -0.63f, -0.86f,       0.0f, 1.0f,
+        -0.63f, -0.90f,       0.0f, 0.0f,
+        -0.61f, -0.90f,       1.0f, 0.0f,
+        -0.61f, -0.86f,       1.0f, 1.0f
     };
     float coordinates1doty[] = {
         // Positions        // Texture Coords
-        -0.10f, -0.79f,       0.0f, 1.0f,
-        -0.10f, -0.795f,       0.0f, 0.0f,
-        -0.105f, -0.795f,       1.0f, 0.0f,
-        -0.105f, -0.79f,       1.0f, 1.0f
+        -0.60f, -0.89f,       0.0f, 1.0f,
+        -0.60f, -0.895f,       0.0f, 0.0f,
+        -0.605f, -0.895f,       1.0f, 0.0f,
+        -0.605f, -0.89f,       1.0f, 1.0f
     };
     float coordinates1num2y[] = {
         // Positions        // Texture Coords
-        -0.09f, -0.76f,       0.0f, 1.0f,
-        -0.09f, -0.80f,       0.0f, 0.0f,
-        -0.07f, -0.80f,       1.0f, 0.0f,
-        -0.07f, -0.76f,       1.0f, 1.0f
+        -0.59f, -0.86f,       0.0f, 1.0f,
+        -0.59f, -0.90f,       0.0f, 0.0f,
+        -0.57f, -0.90f,       1.0f, 0.0f,
+        -0.57f, -0.86f,       1.0f, 1.0f
     };
     float coordinates1num3y[] = {
         // Positions        // Texture Coords
-        -0.07f, -0.76f,       0.0f, 1.0f,
-        -0.07f, -0.80f,       0.0f, 0.0f,
-        -0.05f, -0.80f,       1.0f, 0.0f,
-        -0.05f, -0.76f,       1.0f, 1.0f
+        -0.57f, -0.86f,       0.0f, 1.0f,
+        -0.57f, -0.90f,       0.0f, 0.0f,
+        -0.55f, -0.90f,       1.0f, 0.0f,
+        -0.55f, -0.86f,       1.0f, 1.0f
     };
     unsigned int indices1y[] = {
         0, 1, 3,
@@ -2227,7 +2227,7 @@ int main(void)
         glUseProgram(0);
 
         //progress bar 2
-        initializeProgressVertices(-0.9f, -0.86f, 0.4f, 0.08f, drone2.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices2);
+        initializeProgressVertices(-0.4f, -0.74f, 0.4f, 0.08f, drone2.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices2);
         glBindVertexArray(progressVAO2);
         glBindBuffer(GL_ARRAY_BUFFER, progressVBO2);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(progressVertices2), progressVertices2);  // Update buffer data
