@@ -84,6 +84,13 @@ struct NoFlyZone {
 };
 NoFlyZone noFlyZone = { 0.05f, -0.07f, 0.20f, false, false };
 
+bool areClashing(float x1, float y1, float r1, float x2, float y2, float r2) {
+    float dx = (x2 - x1) * 4 / 3;
+    float dy = y2 - y1;
+    float distance = std::sqrt(dx * dx + dy * dy);
+    return distance <= (r1 + r2);
+}
+
 void initializeNoFlyZoneVertices(float noFlyZoneVertices[], float aspectRatio) {
     const float centerX = noFlyZone.x;
     const float centerY = noFlyZone.y;
@@ -2689,6 +2696,29 @@ int main(void)
         }
         if (drone2.destroyed) {
             drone2.batteryLevel = 0.0f;
+        }
+
+        if (drone1.batteryLevel <= 0.0f) {
+            drone1.destroyed = true;
+        }
+        if (drone2.batteryLevel <= 0.0f) {
+            drone2.destroyed = true;
+        }
+        
+        //2 drones
+        if (areClashing(drone1.x, drone1.y, drone1.radius, drone2.x, drone2.y, drone2.radius)) {
+            drone1.destroyed = true;
+            drone2.destroyed = true;
+        }
+
+        // drone 1 and no fly zone
+        if (areClashing(drone1.x, drone1.y, drone1.radius, noFlyZone.x, noFlyZone.y, noFlyZone.radius)) {
+            drone1.destroyed = true;
+        }
+
+        // drone 2 and no fly zone
+        if (areClashing(drone2.x, drone2.y, drone2.radius, noFlyZone.x, noFlyZone.y, noFlyZone.radius)) {
+            drone2.destroyed = true;
         }
 
         glClearColor(0.184, 0.341, 0.227, 1.0f);
