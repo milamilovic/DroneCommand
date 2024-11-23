@@ -19,9 +19,10 @@ struct Drone {
     float radius;
     float batteryLevel;
     bool active;
+    bool destroyed;
 };
-Drone drone1 = { -0.5f, -0.5f, 0.05f, 100.0f, false };
-Drone drone2 = { 0.5f, -0.5f, 0.05f, 100.0f, false };
+Drone drone1 = { -0.5f, -0.5f, 0.05f, 100.0f, false, false };
+Drone drone2 = { 0.5f, -0.5f, 0.05f, 100.0f, false, false };
 
 void initializeDroneVertices(const Drone& drone, float vertices[], float aspectRatio) {
     const float centerX = drone.x;
@@ -1808,6 +1809,451 @@ int main(void)
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+    //destroyed drone 1
+    float destroyed11[] = {
+        // Positions        // Texture Coords
+        -0.90f, -0.94f,       0.0f, 1.0f,
+        -0.90f, -0.98f,       0.0f, 0.0f,
+        -0.88f, -0.98f,       1.0f, 0.0f,
+        -0.88f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed12[] = {
+        // Positions        // Texture Coords
+        -0.88f, -0.94f,       0.0f, 1.0f,
+        -0.88f, -0.98f,       0.0f, 0.0f,
+        -0.86f, -0.98f,       1.0f, 0.0f,
+        -0.86f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed13[] = {
+        // Positions        // Texture Coords
+        -0.86f, -0.94f,       0.0f, 1.0f,
+        -0.86f, -0.98f,       0.0f, 0.0f,
+        -0.84f, -0.98f,       1.0f, 0.0f,
+        -0.84f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed14[] = {
+        // Positions        // Texture Coords
+        -0.84f, -0.94f,       0.0f, 1.0f,
+        -0.84f, -0.98f,       0.0f, 0.0f,
+        -0.82f, -0.98f,       1.0f, 0.0f,
+        -0.82f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed15[] = {
+        // Positions        // Texture Coords
+        -0.82f, -0.94f,       0.0f, 1.0f,
+        -0.82f, -0.98f,       0.0f, 0.0f,
+        -0.80f, -0.98f,       1.0f, 0.0f,
+        -0.80f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed16[] = {
+        // Positions        // Texture Coords
+        -0.80f, -0.94f,       0.0f, 1.0f,
+        -0.80f, -0.98f,       0.0f, 0.0f,
+        -0.78f, -0.98f,       1.0f, 0.0f,
+        -0.78f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed17[] = {
+        // Positions        // Texture Coords
+        -0.78f, -0.94f,       0.0f, 1.0f,
+        -0.78f, -0.98f,       0.0f, 0.0f,
+        -0.76f, -0.98f,       1.0f, 0.0f,
+        -0.76f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed18[] = {
+        // Positions        // Texture Coords
+        -0.76f, -0.94f,       0.0f, 1.0f,
+        -0.76f, -0.98f,       0.0f, 0.0f,
+        -0.74f, -0.98f,       1.0f, 0.0f,
+        -0.74f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed19[] = {
+        // Positions        // Texture Coords
+        -0.74f, -0.94f,       0.0f, 1.0f,
+        -0.74f, -0.98f,       0.0f, 0.0f,
+        -0.72f, -0.98f,       1.0f, 0.0f,
+        -0.72f, -0.94f,       1.0f, 1.0f
+    };
+    unsigned int destroyedindices11[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices12[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices13[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices14[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices15[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices16[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices17[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices18[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices19[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedVao1[9], destroyedVbo1[9], destroyedEbo1[9];
+    glGenVertexArrays(9, destroyedVao1);
+    glGenBuffers(9, destroyedVbo1);
+    glGenBuffers(9, destroyedEbo1);
+    //D
+    glBindVertexArray(destroyedVao1[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo1[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed11), destroyed11, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo1[0]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices11), destroyedindices11, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //E
+    glBindVertexArray(destroyedVao1[1]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo1[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed12), destroyed12, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo1[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices12), destroyedindices12, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //S
+    glBindVertexArray(destroyedVao1[2]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo1[2]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed13), destroyed13, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo1[2]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices13), destroyedindices13, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //T
+    glBindVertexArray(destroyedVao1[3]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo1[3]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed14), destroyed14, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo1[3]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices14), destroyedindices14, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //R
+    glBindVertexArray(destroyedVao1[4]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo1[4]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed15), destroyed15, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo1[4]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices15), destroyedindices15, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //O
+    glBindVertexArray(destroyedVao1[5]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo1[5]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed16), destroyed16, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo1[5]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices16), destroyedindices16, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //Y
+    glBindVertexArray(destroyedVao1[6]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo1[6]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed17), destroyed17, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo1[6]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices17), destroyedindices17, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //E
+    glBindVertexArray(destroyedVao1[7]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo1[7]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed18), destroyed18, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo1[7]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices18), destroyedindices18, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //D
+    glBindVertexArray(destroyedVao1[8]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo1[8]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed11), destroyed19, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo1[8]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices19), destroyedindices19, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+
+    //destroyed drone 1
+    float destroyed21[] = {
+        // Positions        // Texture Coords
+        -0.40f, -0.94f,       0.0f, 1.0f,
+        -0.40f, -0.98f,       0.0f, 0.0f,
+        -0.38f, -0.98f,       1.0f, 0.0f,
+        -0.38f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed22[] = {
+        // Positions        // Texture Coords
+        -0.38f, -0.94f,       0.0f, 1.0f,
+        -0.38f, -0.98f,       0.0f, 0.0f,
+        -0.36f, -0.98f,       1.0f, 0.0f,
+        -0.36f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed23[] = {
+        // Positions        // Texture Coords
+        -0.36f, -0.94f,       0.0f, 1.0f,
+        -0.36f, -0.98f,       0.0f, 0.0f,
+        -0.34f, -0.98f,       1.0f, 0.0f,
+        -0.34f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed24[] = {
+        // Positions        // Texture Coords
+        -0.34f, -0.94f,       0.0f, 1.0f,
+        -0.34f, -0.98f,       0.0f, 0.0f,
+        -0.32f, -0.98f,       1.0f, 0.0f,
+        -0.32f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed25[] = {
+        // Positions        // Texture Coords
+        -0.32f, -0.94f,       0.0f, 1.0f,
+        -0.32f, -0.98f,       0.0f, 0.0f,
+        -0.30f, -0.98f,       1.0f, 0.0f,
+        -0.30f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed26[] = {
+        // Positions        // Texture Coords
+        -0.30f, -0.94f,       0.0f, 1.0f,
+        -0.30f, -0.98f,       0.0f, 0.0f,
+        -0.28f, -0.98f,       1.0f, 0.0f,
+        -0.28f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed27[] = {
+        // Positions        // Texture Coords
+        -0.28f, -0.94f,       0.0f, 1.0f,
+        -0.28f, -0.98f,       0.0f, 0.0f,
+        -0.26f, -0.98f,       1.0f, 0.0f,
+        -0.26f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed28[] = {
+        // Positions        // Texture Coords
+        -0.26f, -0.94f,       0.0f, 1.0f,
+        -0.26f, -0.98f,       0.0f, 0.0f,
+        -0.24f, -0.98f,       1.0f, 0.0f,
+        -0.24f, -0.94f,       1.0f, 1.0f
+    };
+    float destroyed29[] = {
+        // Positions        // Texture Coords
+        -0.24f, -0.94f,       0.0f, 1.0f,
+        -0.24f, -0.98f,       0.0f, 0.0f,
+        -0.22f, -0.98f,       1.0f, 0.0f,
+        -0.22f, -0.94f,       1.0f, 1.0f
+    };
+    unsigned int destroyedindices21[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices22[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices23[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices24[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices25[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices26[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices27[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices28[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedindices29[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int destroyedVao2[9], destroyedVbo2[9], destroyedEbo2[9];
+    glGenVertexArrays(9, destroyedVao2);
+    glGenBuffers(9, destroyedVbo2);
+    glGenBuffers(9, destroyedEbo2);
+    //D
+    glBindVertexArray(destroyedVao2[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo2[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed21), destroyed21, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo2[0]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices21), destroyedindices21, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //E
+    glBindVertexArray(destroyedVao2[1]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo2[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed22), destroyed22, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo2[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices22), destroyedindices22, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //S
+    glBindVertexArray(destroyedVao2[2]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo2[2]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed23), destroyed23, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo2[2]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices23), destroyedindices23, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //T
+    glBindVertexArray(destroyedVao2[3]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo2[3]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed24), destroyed24, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo2[3]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices24), destroyedindices24, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //R
+    glBindVertexArray(destroyedVao2[4]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo2[4]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed25), destroyed25, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo2[4]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices25), destroyedindices25, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //O
+    glBindVertexArray(destroyedVao2[5]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo2[5]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed26), destroyed26, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo2[5]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices26), destroyedindices26, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //Y
+    glBindVertexArray(destroyedVao2[6]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo2[6]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed27), destroyed27, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo2[6]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices27), destroyedindices27, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //E
+    glBindVertexArray(destroyedVao2[7]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo2[7]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed28), destroyed28, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo2[7]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices28), destroyedindices28, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //D
+    glBindVertexArray(destroyedVao2[8]);
+    glBindBuffer(GL_ARRAY_BUFFER, destroyedVbo2[8]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(destroyed21), destroyed29, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, destroyedEbo2[8]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(destroyedindices29), destroyedindices29, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
     // 1 texture
     unsigned texture1 = loadImageToTexture("res/1.png");
     glBindTexture(GL_TEXTURE_2D, texture1);
@@ -2073,6 +2519,54 @@ int main(void)
     glUseProgram(textureShader);
     glUniform1i(uTexLoc, 0);
     glUseProgram(0);
+    // d texture
+    unsigned textured = loadImageToTexture("res/d.png");
+    glBindTexture(GL_TEXTURE_2D, textured);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // e texture
+    unsigned texturee = loadImageToTexture("res/e.png");
+    glBindTexture(GL_TEXTURE_2D, texturee);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // t texture
+    unsigned texturet = loadImageToTexture("res/t.png");
+    glBindTexture(GL_TEXTURE_2D, texturet);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // r texture
+    unsigned texturer = loadImageToTexture("res/r.png");
+    glBindTexture(GL_TEXTURE_2D, texturer);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
     
     unsigned mapTexture = loadImageToTexture("res/majevica.png");
     glBindTexture(GL_TEXTURE_2D, mapTexture);
@@ -2117,32 +2611,40 @@ int main(void)
                 drone2.active = false;
             }
         }
-        if (drone1.active) {
+        if (drone1.active && !drone1.destroyed) {
             if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-                if(drone1.y < 1) drone1.y += 0.0005;
+                drone1.y += 0.0005;
+                if(drone1.y > 1) drone1.destroyed= true;
             }
             if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-                if (drone1.y > -0.65) drone1.y -= 0.0005;
+                drone1.y -= 0.0005;
+                if (drone1.y < -0.65) drone1.destroyed = true;
             }
             if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-                if (drone1.x > -1) drone1.x -= 0.0005;
+                drone1.x -= 0.0005;
+                if (drone1.x < -1) drone1.destroyed = true;
             }
             if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-                if (drone1.x < 1) drone1.x += 0.0005;
+                drone1.x += 0.0005;
+                if (drone1.x > 1) drone1.destroyed = true;
             }
         }
-        if (drone2.active) {
+        if (drone2.active && !drone2.destroyed) {
             if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-                if (drone2.y < 1) drone2.y += 0.0005;
+                drone2.y += 0.0005;
+                if (drone2.y > 1) drone2.destroyed = true;
             }
             if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-                if (drone2.y > -0.65) drone2.y -= 0.0005;
+                drone2.y -= 0.0005;
+                if (drone2.y < -0.65) drone2.destroyed = true;
             }
             if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-                if (drone2.x > -1) drone2.x -= 0.0005;
+                drone2.x -= 0.0005;
+                if (drone2.x < -1) drone2.destroyed = true;
             }
             if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-                if (drone2.x < 1) drone2.x += 0.0005;
+                drone2.x += 0.0005;
+                if (drone2.x > 1) drone2.destroyed = true;
             }
         }
 
@@ -2156,6 +2658,13 @@ int main(void)
             if (drone2.active && drone2.batteryLevel > 0) {
                 drone2.batteryLevel -= 0.1f;
             }
+        }
+
+        if (drone1.destroyed) {
+            drone1.batteryLevel = 0.0f;
+        }
+        if (drone2.destroyed) {
+            drone2.batteryLevel = 0.0f;
         }
 
         glClearColor(0.184, 0.341, 0.227, 1.0f);
@@ -2199,20 +2708,24 @@ int main(void)
         glDrawArrays(GL_TRIANGLE_FAN, 0, 31);
 
         //drone 1
-        initializeDroneVertices(drone1, droneVertices1, 0.75f);
-        glBindBuffer(GL_ARRAY_BUFFER, droneVBO1);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(droneVertices1), droneVertices1);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBindVertexArray(droneVAO1);
-        glDrawArrays(GL_TRIANGLE_FAN, 0, 31);
+        if (!drone1.destroyed) {
+            initializeDroneVertices(drone1, droneVertices1, 0.75f);
+            glBindBuffer(GL_ARRAY_BUFFER, droneVBO1);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(droneVertices1), droneVertices1);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            glBindVertexArray(droneVAO1);
+            glDrawArrays(GL_TRIANGLE_FAN, 0, 31);
+        }
 
         //drone 2
-        initializeDroneVertices(drone2, droneVertices2, 0.75f);
-        glBindBuffer(GL_ARRAY_BUFFER, droneVBO2);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(droneVertices2), droneVertices2);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBindVertexArray(droneVAO2);
-        glDrawArrays(GL_TRIANGLE_FAN, 0, 31);
+        if (!drone2.destroyed) {
+            initializeDroneVertices(drone2, droneVertices2, 0.75f);
+            glBindBuffer(GL_ARRAY_BUFFER, droneVBO2);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(droneVertices2), droneVertices2);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            glBindVertexArray(droneVAO2);
+            glDrawArrays(GL_TRIANGLE_FAN, 0, 31);
+        }
 
         //progress bar 1
         initializeProgressVertices(-0.9f, -0.74f, 0.4f, 0.08f, drone1.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices1);
@@ -2558,7 +3071,7 @@ int main(void)
         glBindVertexArray(coordinatesVao1[2]);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
-        if (drone1.x < 0) {
+        if (drone1.x < 0 || drone1.destroyed) {
             // - for x for drone 1
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, textureMinus);
@@ -2566,10 +3079,11 @@ int main(void)
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
             glBindVertexArray(0);
         }
-        // num1 for x for drone 1
-        int num1 = 0;
-        if (drone1.x <= -1 || drone1.x >= 1) num1 = 1;
-        switch (num1) {
+        if (!drone1.destroyed) {
+            // num1 for x for drone 1
+            int num1 = 0;
+            if (drone1.x <= -1 || drone1.x >= 1) num1 = 1;
+            switch (num1) {
             case 0: {
                 glBindTexture(GL_TEXTURE_2D, texture0);
                 break;
@@ -2580,112 +3094,113 @@ int main(void)
             }
             default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
             }
-        glBindVertexArray(coordinatesVao1[4]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // . for x for drone 1
-        glBindTexture(GL_TEXTURE_2D, textureDot);
-        glBindVertexArray(coordinatesVao1[5]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // num2 for x for drone 1
-        float scaledX = abs(drone1.x) * 100.0f;
-        int precise = static_cast<int>(round(scaledX));
-        int first = (precise / 10) % 10;
-        int second = precise % 10;
-        switch (first) {
-        case 0: {
-            glBindTexture(GL_TEXTURE_2D, texture0);
-            break;
+            glBindVertexArray(coordinatesVao1[4]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // . for x for drone 1
+            glBindTexture(GL_TEXTURE_2D, textureDot);
+            glBindVertexArray(coordinatesVao1[5]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // num2 for x for drone 1
+            float scaledX = abs(drone1.x) * 100.0f;
+            int precise = static_cast<int>(round(scaledX));
+            int first = (precise / 10) % 10;
+            int second = precise % 10;
+            switch (first) {
+            case 0: {
+                glBindTexture(GL_TEXTURE_2D, texture0);
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            case 2: {
+                glBindTexture(GL_TEXTURE_2D, texture2);
+                break;
+            }
+            case 3: {
+                glBindTexture(GL_TEXTURE_2D, texture3);
+                break;
+            }
+            case 4: {
+                glBindTexture(GL_TEXTURE_2D, texture4);
+                break;
+            }
+            case 5: {
+                glBindTexture(GL_TEXTURE_2D, texture5);
+                break;
+            }
+            case 6: {
+                glBindTexture(GL_TEXTURE_2D, texture6);
+                break;
+            }
+            case 7: {
+                glBindTexture(GL_TEXTURE_2D, texture7);
+                break;
+            }
+            case 8: {
+                glBindTexture(GL_TEXTURE_2D, texture8);
+                break;
+            }
+            case 9: {
+                glBindTexture(GL_TEXTURE_2D, texture9);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+            }
+            glBindVertexArray(coordinatesVao1[6]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // num3 for x for drone 1
+            switch (second) {
+            case 0: {
+                glBindTexture(GL_TEXTURE_2D, texture0);
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            case 2: {
+                glBindTexture(GL_TEXTURE_2D, texture2);
+                break;
+            }
+            case 3: {
+                glBindTexture(GL_TEXTURE_2D, texture3);
+                break;
+            }
+            case 4: {
+                glBindTexture(GL_TEXTURE_2D, texture4);
+                break;
+            }
+            case 5: {
+                glBindTexture(GL_TEXTURE_2D, texture5);
+                break;
+            }
+            case 6: {
+                glBindTexture(GL_TEXTURE_2D, texture6);
+                break;
+            }
+            case 7: {
+                glBindTexture(GL_TEXTURE_2D, texture7);
+                break;
+            }
+            case 8: {
+                glBindTexture(GL_TEXTURE_2D, texture8);
+                break;
+            }
+            case 9: {
+                glBindTexture(GL_TEXTURE_2D, texture9);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+            }
+            glBindVertexArray(coordinatesVao1[7]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
         }
-        case 1: {
-            glBindTexture(GL_TEXTURE_2D, texture1);
-            break;
-        }
-        case 2: {
-            glBindTexture(GL_TEXTURE_2D, texture2);
-            break;
-        }
-        case 3: {
-            glBindTexture(GL_TEXTURE_2D, texture3);
-            break;
-        }
-        case 4: {
-            glBindTexture(GL_TEXTURE_2D, texture4);
-            break;
-        }
-        case 5: {
-            glBindTexture(GL_TEXTURE_2D, texture5);
-            break;
-        }
-        case 6: {
-            glBindTexture(GL_TEXTURE_2D, texture6);
-            break;
-        }
-        case 7: {
-            glBindTexture(GL_TEXTURE_2D, texture7);
-            break;
-        }
-        case 8: {
-            glBindTexture(GL_TEXTURE_2D, texture8);
-            break;
-        }
-        case 9: {
-            glBindTexture(GL_TEXTURE_2D, texture9);
-            break;
-        }
-        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
-        }
-        glBindVertexArray(coordinatesVao1[6]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // num3 for x for drone 1
-        switch (second) {
-        case 0: {
-            glBindTexture(GL_TEXTURE_2D, texture0);
-            break;
-        }
-        case 1: {
-            glBindTexture(GL_TEXTURE_2D, texture1);
-            break;
-        }
-        case 2: {
-            glBindTexture(GL_TEXTURE_2D, texture2);
-            break;
-        }
-        case 3: {
-            glBindTexture(GL_TEXTURE_2D, texture3);
-            break;
-        }
-        case 4: {
-            glBindTexture(GL_TEXTURE_2D, texture4);
-            break;
-        }
-        case 5: {
-            glBindTexture(GL_TEXTURE_2D, texture5);
-            break;
-        }
-        case 6: {
-            glBindTexture(GL_TEXTURE_2D, texture6);
-            break;
-        }
-        case 7: {
-            glBindTexture(GL_TEXTURE_2D, texture7);
-            break;
-        }
-        case 8: {
-            glBindTexture(GL_TEXTURE_2D, texture8);
-            break;
-        }
-        case 9: {
-            glBindTexture(GL_TEXTURE_2D, texture9);
-            break;
-        }
-        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
-        }
-        glBindVertexArray(coordinatesVao1[7]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
 
         // y for drone 1
         glActiveTexture(GL_TEXTURE0);
@@ -2702,7 +3217,7 @@ int main(void)
         glBindVertexArray(coordinatesVao1y[2]);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
-        if (drone1.y < 0) {
+        if (drone1.y < 0 || drone1.destroyed) {
             // - for y for drone 1
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, textureMinus);
@@ -2710,126 +3225,128 @@ int main(void)
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
             glBindVertexArray(0);
         }
-        // num1 for y for drone 1
-        num1 = 0;
-        if (drone1.y <= -1 || drone1.y >= 1) num1 = 1;
-        switch (num1) {
-        case 0: {
-            glBindTexture(GL_TEXTURE_2D, texture0);
-            break;
+        if (!drone1.destroyed) {
+            // num1 for y for drone 1
+            int num1 = 0;
+            if (drone1.y <= -1 || drone1.y >= 1) num1 = 1;
+            switch (num1) {
+            case 0: {
+                glBindTexture(GL_TEXTURE_2D, texture0);
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+            }
+            glBindVertexArray(coordinatesVao1y[4]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // . for x for drone 1
+            glBindTexture(GL_TEXTURE_2D, textureDot);
+            glBindVertexArray(coordinatesVao1y[5]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // num2 for x for drone 1
+            float scaledY = abs(drone1.y) * 100.0f;
+            int precise = static_cast<int>(round(scaledY));
+            int first = (precise / 10) % 10;
+            int second = precise % 10;
+            switch (first) {
+            case 0: {
+                glBindTexture(GL_TEXTURE_2D, texture0);
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            case 2: {
+                glBindTexture(GL_TEXTURE_2D, texture2);
+                break;
+            }
+            case 3: {
+                glBindTexture(GL_TEXTURE_2D, texture3);
+                break;
+            }
+            case 4: {
+                glBindTexture(GL_TEXTURE_2D, texture4);
+                break;
+            }
+            case 5: {
+                glBindTexture(GL_TEXTURE_2D, texture5);
+                break;
+            }
+            case 6: {
+                glBindTexture(GL_TEXTURE_2D, texture6);
+                break;
+            }
+            case 7: {
+                glBindTexture(GL_TEXTURE_2D, texture7);
+                break;
+            }
+            case 8: {
+                glBindTexture(GL_TEXTURE_2D, texture8);
+                break;
+            }
+            case 9: {
+                glBindTexture(GL_TEXTURE_2D, texture9);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+            }
+            glBindVertexArray(coordinatesVao1y[6]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // num3 for x for drone 1
+            switch (second) {
+            case 0: {
+                glBindTexture(GL_TEXTURE_2D, texture0);
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            case 2: {
+                glBindTexture(GL_TEXTURE_2D, texture2);
+                break;
+            }
+            case 3: {
+                glBindTexture(GL_TEXTURE_2D, texture3);
+                break;
+            }
+            case 4: {
+                glBindTexture(GL_TEXTURE_2D, texture4);
+                break;
+            }
+            case 5: {
+                glBindTexture(GL_TEXTURE_2D, texture5);
+                break;
+            }
+            case 6: {
+                glBindTexture(GL_TEXTURE_2D, texture6);
+                break;
+            }
+            case 7: {
+                glBindTexture(GL_TEXTURE_2D, texture7);
+                break;
+            }
+            case 8: {
+                glBindTexture(GL_TEXTURE_2D, texture8);
+                break;
+            }
+            case 9: {
+                glBindTexture(GL_TEXTURE_2D, texture9);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+            }
+            glBindVertexArray(coordinatesVao1y[7]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
         }
-        case 1: {
-            glBindTexture(GL_TEXTURE_2D, texture1);
-            break;
-        }
-        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
-        }
-        glBindVertexArray(coordinatesVao1y[4]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // . for x for drone 1
-        glBindTexture(GL_TEXTURE_2D, textureDot);
-        glBindVertexArray(coordinatesVao1y[5]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // num2 for x for drone 1
-        float scaledY = abs(drone1.y) * 100.0f;
-        precise = static_cast<int>(round(scaledY));
-        first = (precise / 10) % 10;
-        second = precise % 10;
-        switch (first) {
-        case 0: {
-            glBindTexture(GL_TEXTURE_2D, texture0);
-            break;
-        }
-        case 1: {
-            glBindTexture(GL_TEXTURE_2D, texture1);
-            break;
-        }
-        case 2: {
-            glBindTexture(GL_TEXTURE_2D, texture2);
-            break;
-        }
-        case 3: {
-            glBindTexture(GL_TEXTURE_2D, texture3);
-            break;
-        }
-        case 4: {
-            glBindTexture(GL_TEXTURE_2D, texture4);
-            break;
-        }
-        case 5: {
-            glBindTexture(GL_TEXTURE_2D, texture5);
-            break;
-        }
-        case 6: {
-            glBindTexture(GL_TEXTURE_2D, texture6);
-            break;
-        }
-        case 7: {
-            glBindTexture(GL_TEXTURE_2D, texture7);
-            break;
-        }
-        case 8: {
-            glBindTexture(GL_TEXTURE_2D, texture8);
-            break;
-        }
-        case 9: {
-            glBindTexture(GL_TEXTURE_2D, texture9);
-            break;
-        }
-        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
-        }
-        glBindVertexArray(coordinatesVao1y[6]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // num3 for x for drone 1
-        switch (second) {
-        case 0: {
-            glBindTexture(GL_TEXTURE_2D, texture0);
-            break;
-        }
-        case 1: {
-            glBindTexture(GL_TEXTURE_2D, texture1);
-            break;
-        }
-        case 2: {
-            glBindTexture(GL_TEXTURE_2D, texture2);
-            break;
-        }
-        case 3: {
-            glBindTexture(GL_TEXTURE_2D, texture3);
-            break;
-        }
-        case 4: {
-            glBindTexture(GL_TEXTURE_2D, texture4);
-            break;
-        }
-        case 5: {
-            glBindTexture(GL_TEXTURE_2D, texture5);
-            break;
-        }
-        case 6: {
-            glBindTexture(GL_TEXTURE_2D, texture6);
-            break;
-        }
-        case 7: {
-            glBindTexture(GL_TEXTURE_2D, texture7);
-            break;
-        }
-        case 8: {
-            glBindTexture(GL_TEXTURE_2D, texture8);
-            break;
-        }
-        case 9: {
-            glBindTexture(GL_TEXTURE_2D, texture9);
-            break;
-        }
-        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
-        }
-        glBindVertexArray(coordinatesVao1y[7]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
 
         // x for drone 2
         glActiveTexture(GL_TEXTURE0);
@@ -2846,7 +3363,7 @@ int main(void)
         glBindVertexArray(coordinatesVao2[2]);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
-        if (drone2.x < 0) {
+        if (drone2.x < 0 || drone2.destroyed) {
             // - for x for drone 1
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, textureMinus);
@@ -2855,125 +3372,127 @@ int main(void)
             glBindVertexArray(0);
         }
         // num1 for x for drone 2
-        num1 = 0;
-        if (drone2.x <= -1 || drone2.x >= 1) num1 = 1;
-        switch (num1) {
-        case 0: {
-            glBindTexture(GL_TEXTURE_2D, texture0);
-            break;
+        if (!drone2.destroyed) {
+            int num1 = 0;
+            if (drone2.x <= -1 || drone2.x >= 1) num1 = 1;
+            switch (num1) {
+            case 0: {
+                glBindTexture(GL_TEXTURE_2D, texture0);
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+            }
+            glBindVertexArray(coordinatesVao2[4]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // . for x for drone 2
+            glBindTexture(GL_TEXTURE_2D, textureDot);
+            glBindVertexArray(coordinatesVao2[5]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // num2 for x for drone 2
+            int scaledX = abs(drone2.x) * 100.0f;
+            int precise = static_cast<int>(round(scaledX));
+            int first = (precise / 10) % 10;
+            int second = precise % 10;
+            switch (first) {
+            case 0: {
+                glBindTexture(GL_TEXTURE_2D, texture0);
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            case 2: {
+                glBindTexture(GL_TEXTURE_2D, texture2);
+                break;
+            }
+            case 3: {
+                glBindTexture(GL_TEXTURE_2D, texture3);
+                break;
+            }
+            case 4: {
+                glBindTexture(GL_TEXTURE_2D, texture4);
+                break;
+            }
+            case 5: {
+                glBindTexture(GL_TEXTURE_2D, texture5);
+                break;
+            }
+            case 6: {
+                glBindTexture(GL_TEXTURE_2D, texture6);
+                break;
+            }
+            case 7: {
+                glBindTexture(GL_TEXTURE_2D, texture7);
+                break;
+            }
+            case 8: {
+                glBindTexture(GL_TEXTURE_2D, texture8);
+                break;
+            }
+            case 9: {
+                glBindTexture(GL_TEXTURE_2D, texture9);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+            }
+            glBindVertexArray(coordinatesVao2[6]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // num3 for x for drone 2
+            switch (second) {
+            case 0: {
+                glBindTexture(GL_TEXTURE_2D, texture0);
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            case 2: {
+                glBindTexture(GL_TEXTURE_2D, texture2);
+                break;
+            }
+            case 3: {
+                glBindTexture(GL_TEXTURE_2D, texture3);
+                break;
+            }
+            case 4: {
+                glBindTexture(GL_TEXTURE_2D, texture4);
+                break;
+            }
+            case 5: {
+                glBindTexture(GL_TEXTURE_2D, texture5);
+                break;
+            }
+            case 6: {
+                glBindTexture(GL_TEXTURE_2D, texture6);
+                break;
+            }
+            case 7: {
+                glBindTexture(GL_TEXTURE_2D, texture7);
+                break;
+            }
+            case 8: {
+                glBindTexture(GL_TEXTURE_2D, texture8);
+                break;
+            }
+            case 9: {
+                glBindTexture(GL_TEXTURE_2D, texture9);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+            }
+            glBindVertexArray(coordinatesVao2[7]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
         }
-        case 1: {
-            glBindTexture(GL_TEXTURE_2D, texture1);
-            break;
-        }
-        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
-        }
-        glBindVertexArray(coordinatesVao2[4]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // . for x for drone 2
-        glBindTexture(GL_TEXTURE_2D, textureDot);
-        glBindVertexArray(coordinatesVao2[5]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // num2 for x for drone 2
-        scaledX = abs(drone2.x) * 100.0f;
-        precise = static_cast<int>(round(scaledX));
-        first = (precise / 10) % 10;
-        second = precise % 10;
-        switch (first) {
-        case 0: {
-            glBindTexture(GL_TEXTURE_2D, texture0);
-            break;
-        }
-        case 1: {
-            glBindTexture(GL_TEXTURE_2D, texture1);
-            break;
-        }
-        case 2: {
-            glBindTexture(GL_TEXTURE_2D, texture2);
-            break;
-        }
-        case 3: {
-            glBindTexture(GL_TEXTURE_2D, texture3);
-            break;
-        }
-        case 4: {
-            glBindTexture(GL_TEXTURE_2D, texture4);
-            break;
-        }
-        case 5: {
-            glBindTexture(GL_TEXTURE_2D, texture5);
-            break;
-        }
-        case 6: {
-            glBindTexture(GL_TEXTURE_2D, texture6);
-            break;
-        }
-        case 7: {
-            glBindTexture(GL_TEXTURE_2D, texture7);
-            break;
-        }
-        case 8: {
-            glBindTexture(GL_TEXTURE_2D, texture8);
-            break;
-        }
-        case 9: {
-            glBindTexture(GL_TEXTURE_2D, texture9);
-            break;
-        }
-        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
-        }
-        glBindVertexArray(coordinatesVao2[6]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // num3 for x for drone 2
-        switch (second) {
-        case 0: {
-            glBindTexture(GL_TEXTURE_2D, texture0);
-            break;
-        }
-        case 1: {
-            glBindTexture(GL_TEXTURE_2D, texture1);
-            break;
-        }
-        case 2: {
-            glBindTexture(GL_TEXTURE_2D, texture2);
-            break;
-        }
-        case 3: {
-            glBindTexture(GL_TEXTURE_2D, texture3);
-            break;
-        }
-        case 4: {
-            glBindTexture(GL_TEXTURE_2D, texture4);
-            break;
-        }
-        case 5: {
-            glBindTexture(GL_TEXTURE_2D, texture5);
-            break;
-        }
-        case 6: {
-            glBindTexture(GL_TEXTURE_2D, texture6);
-            break;
-        }
-        case 7: {
-            glBindTexture(GL_TEXTURE_2D, texture7);
-            break;
-        }
-        case 8: {
-            glBindTexture(GL_TEXTURE_2D, texture8);
-            break;
-        }
-        case 9: {
-            glBindTexture(GL_TEXTURE_2D, texture9);
-            break;
-        }
-        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
-        }
-        glBindVertexArray(coordinatesVao2[7]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
 
         // y for drone 2
         glActiveTexture(GL_TEXTURE0);
@@ -2990,7 +3509,7 @@ int main(void)
         glBindVertexArray(coordinatesVao2y[2]);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
-        if (drone2.y < 0) {
+        if (drone2.y < 0 || drone2.destroyed) {
             // - for y for drone 2
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, textureMinus);
@@ -2999,125 +3518,127 @@ int main(void)
             glBindVertexArray(0);
         }
         // num1 for y for drone 2
-        num1 = 0;
-        if (drone2.y <= -1 || drone2.y >= 1) num1 = 1;
-        switch (num1) {
-        case 0: {
-            glBindTexture(GL_TEXTURE_2D, texture0);
-            break;
+        if (!drone2.destroyed) {
+            int num1 = 0;
+            if (drone2.y <= -1 || drone2.y >= 1) num1 = 1;
+            switch (num1) {
+            case 0: {
+                glBindTexture(GL_TEXTURE_2D, texture0);
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+            }
+            glBindVertexArray(coordinatesVao2y[4]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // . for x for drone 2
+            glBindTexture(GL_TEXTURE_2D, textureDot);
+            glBindVertexArray(coordinatesVao2y[5]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // num2 for x for drone 1
+            int scaledY = abs(drone2.y) * 100.0f;
+            int precise = static_cast<int>(round(scaledY));
+            int first = (precise / 10) % 10;
+            int second = precise % 10;
+            switch (first) {
+            case 0: {
+                glBindTexture(GL_TEXTURE_2D, texture0);
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            case 2: {
+                glBindTexture(GL_TEXTURE_2D, texture2);
+                break;
+            }
+            case 3: {
+                glBindTexture(GL_TEXTURE_2D, texture3);
+                break;
+            }
+            case 4: {
+                glBindTexture(GL_TEXTURE_2D, texture4);
+                break;
+            }
+            case 5: {
+                glBindTexture(GL_TEXTURE_2D, texture5);
+                break;
+            }
+            case 6: {
+                glBindTexture(GL_TEXTURE_2D, texture6);
+                break;
+            }
+            case 7: {
+                glBindTexture(GL_TEXTURE_2D, texture7);
+                break;
+            }
+            case 8: {
+                glBindTexture(GL_TEXTURE_2D, texture8);
+                break;
+            }
+            case 9: {
+                glBindTexture(GL_TEXTURE_2D, texture9);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+            }
+            glBindVertexArray(coordinatesVao2y[6]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            // num3 for x for drone 1
+            switch (second) {
+            case 0: {
+                glBindTexture(GL_TEXTURE_2D, texture0);
+                break;
+            }
+            case 1: {
+                glBindTexture(GL_TEXTURE_2D, texture1);
+                break;
+            }
+            case 2: {
+                glBindTexture(GL_TEXTURE_2D, texture2);
+                break;
+            }
+            case 3: {
+                glBindTexture(GL_TEXTURE_2D, texture3);
+                break;
+            }
+            case 4: {
+                glBindTexture(GL_TEXTURE_2D, texture4);
+                break;
+            }
+            case 5: {
+                glBindTexture(GL_TEXTURE_2D, texture5);
+                break;
+            }
+            case 6: {
+                glBindTexture(GL_TEXTURE_2D, texture6);
+                break;
+            }
+            case 7: {
+                glBindTexture(GL_TEXTURE_2D, texture7);
+                break;
+            }
+            case 8: {
+                glBindTexture(GL_TEXTURE_2D, texture8);
+                break;
+            }
+            case 9: {
+                glBindTexture(GL_TEXTURE_2D, texture9);
+                break;
+            }
+            default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
+            }
+            glBindVertexArray(coordinatesVao2y[7]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
         }
-        case 1: {
-            glBindTexture(GL_TEXTURE_2D, texture1);
-            break;
-        }
-        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
-        }
-        glBindVertexArray(coordinatesVao2y[4]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // . for x for drone 2
-        glBindTexture(GL_TEXTURE_2D, textureDot);
-        glBindVertexArray(coordinatesVao2y[5]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // num2 for x for drone 1
-        scaledY = abs(drone2.y) * 100.0f;
-        precise = static_cast<int>(round(scaledY));
-        first = (precise / 10) % 10;
-        second = precise % 10;
-        switch (first) {
-        case 0: {
-            glBindTexture(GL_TEXTURE_2D, texture0);
-            break;
-        }
-        case 1: {
-            glBindTexture(GL_TEXTURE_2D, texture1);
-            break;
-        }
-        case 2: {
-            glBindTexture(GL_TEXTURE_2D, texture2);
-            break;
-        }
-        case 3: {
-            glBindTexture(GL_TEXTURE_2D, texture3);
-            break;
-        }
-        case 4: {
-            glBindTexture(GL_TEXTURE_2D, texture4);
-            break;
-        }
-        case 5: {
-            glBindTexture(GL_TEXTURE_2D, texture5);
-            break;
-        }
-        case 6: {
-            glBindTexture(GL_TEXTURE_2D, texture6);
-            break;
-        }
-        case 7: {
-            glBindTexture(GL_TEXTURE_2D, texture7);
-            break;
-        }
-        case 8: {
-            glBindTexture(GL_TEXTURE_2D, texture8);
-            break;
-        }
-        case 9: {
-            glBindTexture(GL_TEXTURE_2D, texture9);
-            break;
-        }
-        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
-        }
-        glBindVertexArray(coordinatesVao2y[6]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        // num3 for x for drone 1
-        switch (second) {
-        case 0: {
-            glBindTexture(GL_TEXTURE_2D, texture0);
-            break;
-        }
-        case 1: {
-            glBindTexture(GL_TEXTURE_2D, texture1);
-            break;
-        }
-        case 2: {
-            glBindTexture(GL_TEXTURE_2D, texture2);
-            break;
-        }
-        case 3: {
-            glBindTexture(GL_TEXTURE_2D, texture3);
-            break;
-        }
-        case 4: {
-            glBindTexture(GL_TEXTURE_2D, texture4);
-            break;
-        }
-        case 5: {
-            glBindTexture(GL_TEXTURE_2D, texture5);
-            break;
-        }
-        case 6: {
-            glBindTexture(GL_TEXTURE_2D, texture6);
-            break;
-        }
-        case 7: {
-            glBindTexture(GL_TEXTURE_2D, texture7);
-            break;
-        }
-        case 8: {
-            glBindTexture(GL_TEXTURE_2D, texture8);
-            break;
-        }
-        case 9: {
-            glBindTexture(GL_TEXTURE_2D, texture9);
-            break;
-        }
-        default: glBindTexture(GL_TEXTURE_2D, texture0); // Fallback, should not occur
-        }
-        glBindVertexArray(coordinatesVao2y[7]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
 
         //IME I PREZIME
         //m
@@ -3241,6 +3762,122 @@ int main(void)
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
 
+
+        //DESTROYED 1
+        if (drone1.destroyed) {
+            //d
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, textured);
+            glBindVertexArray(destroyedVao1[0]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //e
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texturee);
+            glBindVertexArray(destroyedVao1[1]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //s
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, textures);
+            glBindVertexArray(destroyedVao1[2]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //t
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texturet);
+            glBindVertexArray(destroyedVao1[3]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //r
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texturer);
+            glBindVertexArray(destroyedVao1[4]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //o
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, textureo);
+            glBindVertexArray(destroyedVao1[5]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //y
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texturey);
+            glBindVertexArray(destroyedVao1[6]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //e
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texturee);
+            glBindVertexArray(destroyedVao1[7]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //d
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, textured);
+            glBindVertexArray(destroyedVao1[8]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+        }
+        //DESTROYED 2
+        if (drone2.destroyed) {
+            //d
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, textured);
+            glBindVertexArray(destroyedVao2[0]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //e
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texturee);
+            glBindVertexArray(destroyedVao2[1]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //s
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, textures);
+            glBindVertexArray(destroyedVao2[2]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //t
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texturet);
+            glBindVertexArray(destroyedVao2[3]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //r
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texturer);
+            glBindVertexArray(destroyedVao2[4]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //o
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, textureo);
+            glBindVertexArray(destroyedVao2[5]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //y
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texturey);
+            glBindVertexArray(destroyedVao2[6]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //e
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texturee);
+            glBindVertexArray(destroyedVao2[7]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+            //d
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, textured);
+            glBindVertexArray(destroyedVao2[8]);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+        }
+
         glBindVertexArray(0);
         glUseProgram(0);
 
@@ -3288,6 +3925,12 @@ int main(void)
     glDeleteVertexArrays(9, indexVao);
     glDeleteBuffers(9, indexVbo);
     glDeleteBuffers(9, indexEbo);
+    glDeleteVertexArrays(9, destroyedVao1);
+    glDeleteBuffers(9, destroyedVbo1);
+    glDeleteBuffers(9, destroyedEbo1);
+    glDeleteVertexArrays(9, destroyedVao2);
+    glDeleteBuffers(9, destroyedVbo2);
+    glDeleteBuffers(9, destroyedEbo2);
     glDeleteProgram(mapShader);
     glDeleteProgram(textureShader);
 
