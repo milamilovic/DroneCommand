@@ -1318,6 +1318,496 @@ int main(void)
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+    // IME PREZIME I INDEKS
+    float name1[] = {
+        // Positions        // Texture Coords
+        0.60f, -0.92f,       0.0f, 1.0f,
+        0.60f, -0.96f,       0.0f, 0.0f,
+        0.62f, -0.96f,       1.0f, 0.0f,
+        0.62f, -0.92f,       1.0f, 1.0f
+    };
+    float name2[] = {
+        // Positions        // Texture Coords
+        0.62f, -0.92f,       0.0f, 1.0f,
+        0.62f, -0.96f,       0.0f, 0.0f,
+        0.63f, -0.96f,       1.0f, 0.0f,
+        0.63f, -0.92f,       1.0f, 1.0f
+    };
+    float name3[] = {
+        // Positions        // Texture Coords
+        0.63f, -0.92f,       0.0f, 1.0f,
+        0.63f, -0.96f,       0.0f, 0.0f,
+        0.65f, -0.96f,       1.0f, 0.0f,
+        0.65f, -0.92f,       1.0f, 1.0f
+    };
+    float name4[] = {
+        // Positions        // Texture Coords
+        0.65f, -0.92f,       0.0f, 1.0f,
+        0.65f, -0.96f,       0.0f, 0.0f,
+        0.67f, -0.96f,       1.0f, 0.0f,
+        0.67f, -0.92f,       1.0f, 1.0f
+    };
+    float surname1[] = {
+        // Positions        // Texture Coords
+        0.69f, -0.92f,       0.0f, 1.0f,
+        0.69f, -0.96f,       0.0f, 0.0f,
+        0.71f, -0.96f,       1.0f, 0.0f,
+        0.71f, -0.92f,       1.0f, 1.0f
+    };
+    float surname2[] = {
+        // Positions        // Texture Coords
+        0.71f, -0.92f,       0.0f, 1.0f,
+        0.71f, -0.96f,       0.0f, 0.0f,
+        0.72f, -0.96f,       1.0f, 0.0f,
+        0.72f, -0.92f,       1.0f, 1.0f
+    };
+    float surname3[] = {
+        // Positions        // Texture Coords
+        0.72f, -0.92f,       0.0f, 1.0f,
+        0.72f, -0.96f,       0.0f, 0.0f,
+        0.74f, -0.96f,       1.0f, 0.0f,
+        0.74f, -0.92f,       1.0f, 1.0f
+    };
+    float surname4[] = {
+        // Positions        // Texture Coords
+        0.74f, -0.92f,       0.0f, 1.0f,
+        0.74f, -0.96f,       0.0f, 0.0f,
+        0.76f, -0.96f,       1.0f, 0.0f,
+        0.76f, -0.92f,       1.0f, 1.0f
+    };
+    float surname5[] = {
+        // Positions        // Texture Coords
+        0.76f, -0.92f,       0.0f, 1.0f,
+        0.76f, -0.96f,       0.0f, 0.0f,
+        0.78f, -0.96f,       1.0f, 0.0f,
+        0.78f, -0.92f,       1.0f, 1.0f
+    };
+    float surname6[] = {
+        // Positions        // Texture Coords
+        0.78f, -0.92f,       0.0f, 1.0f,
+        0.78f, -0.96f,       0.0f, 0.0f,
+        0.79f, -0.96f,       1.0f, 0.0f,
+        0.79f, -0.92f,       1.0f, 1.0f
+    };
+    float surname7[] = {
+        // Positions        // Texture Coords
+        0.79f, -0.91f,       0.0f, 1.0f,
+        0.79f, -0.96f,       0.0f, 0.0f,
+        0.81f, -0.96f,       1.0f, 0.0f,
+        0.81f, -0.91f,       1.0f, 1.0f
+    };
+    float indeks1[] = {
+        // Positions        // Texture Coords
+        0.83f, -0.92f,       0.0f, 1.0f,
+        0.83f, -0.96f,       0.0f, 0.0f,
+        0.85f, -0.96f,       1.0f, 0.0f,
+        0.85f, -0.92f,       1.0f, 1.0f
+    };
+    float indeks2[] = {
+        // Positions        // Texture Coords
+        0.85f, -0.92f,       0.0f, 1.0f,
+        0.85f, -0.96f,       0.0f, 0.0f,
+        0.87f, -0.96f,       1.0f, 0.0f,
+        0.87f, -0.92f,       1.0f, 1.0f
+    };
+    float indeks3[] = {
+        // Positions        // Texture Coords
+        0.87f, -0.92f,       0.0f, 1.0f,
+        0.87f, -0.96f,       0.0f, 0.0f,
+        0.89f, -0.96f,       1.0f, 0.0f,
+        0.89f, -0.92f,       1.0f, 1.0f
+    };
+    float indeks4[] = {
+        // Positions        // Texture Coords
+        0.89f, -0.92f,       0.0f, 1.0f,
+        0.89f, -0.96f,       0.0f, 0.0f,
+        0.91f, -0.96f,       1.0f, 0.0f,
+        0.91f, -0.92f,       1.0f, 1.0f
+    };
+    float indeks5[] = {
+        // Positions        // Texture Coords
+        0.91f, -0.94f,       0.0f, 1.0f,
+        0.91f, -0.945f,       0.0f, 0.0f,
+        0.92f, -0.945f,       1.0f, 0.0f,
+        0.92f, -0.94f,       1.0f, 1.0f
+    };
+    float indeks6[] = {
+        // Positions        // Texture Coords
+        0.92f, -0.92f,       0.0f, 1.0f,
+        0.92f, -0.96f,       0.0f, 0.0f,
+        0.94f, -0.96f,       1.0f, 0.0f,
+        0.94f, -0.92f,       1.0f, 1.0f
+    };
+    float indeks7[] = {
+        // Positions        // Texture Coords
+        0.94f, -0.92f,       0.0f, 1.0f,
+        0.94f, -0.96f,       0.0f, 0.0f,
+        0.96f, -0.96f,       1.0f, 0.0f,
+        0.96f, -0.92f,       1.0f, 1.0f
+    };
+    float indeks8[] = {
+        // Positions        // Texture Coords
+        0.96f, -0.92f,       0.0f, 1.0f,
+        0.96f, -0.96f,       0.0f, 0.0f,
+        0.98f, -0.96f,       1.0f, 0.0f,
+        0.98f, -0.92f,       1.0f, 1.0f
+    };
+    float indeks9[] = {
+        // Positions        // Texture Coords
+        0.98f, -0.92f,       0.0f, 1.0f,
+        0.98f, -0.96f,       0.0f, 0.0f,
+        1.00f, -0.96f,       1.0f, 0.0f,
+        1.00f, -0.92f,       1.0f, 1.0f
+    };
+    unsigned int nameIndices1[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int nameIndices2[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int nameIndices3[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int nameIndices4[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int surnameIndices1[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int surnameIndices2[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int surnameIndices3[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int surnameIndices4[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int surnameIndices5[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int surnameIndices6[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int surnameIndices7[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int indexIndices1[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int indexIndices2[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int indexIndices3[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int indexIndices4[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int indexIndices5[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int indexIndices6[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int indexIndices7[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int indexIndices8[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int indexIndices9[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    unsigned int nameVao[11], nameVbo[11], nameEbo[11];
+    glGenVertexArrays(11, nameVao);
+    glGenBuffers(11, nameVbo);
+    glGenBuffers(11, nameEbo);
+    unsigned int indexVao[9], indexVbo[9], indexEbo[9];
+    glGenVertexArrays(9, indexVao);
+    glGenBuffers(9, indexVbo);
+    glGenBuffers(9, indexEbo);
+    //M
+    glBindVertexArray(nameVao[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, nameVbo[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(name1), name1, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nameEbo[0]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(nameIndices1), nameIndices1, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //I
+    glBindVertexArray(nameVao[1]);
+    glBindBuffer(GL_ARRAY_BUFFER, nameVbo[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(name2), name2, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nameEbo[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(nameIndices2), nameIndices2, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //L
+    glBindVertexArray(nameVao[2]);
+    glBindBuffer(GL_ARRAY_BUFFER, nameVbo[2]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(name3), name3, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nameEbo[2]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(nameIndices3), nameIndices3, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //A
+    glBindVertexArray(nameVao[3]);
+    glBindBuffer(GL_ARRAY_BUFFER, nameVbo[3]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(name4), name4, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nameEbo[3]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(nameIndices4), nameIndices4, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //M
+    glBindVertexArray(nameVao[4]);
+    glBindBuffer(GL_ARRAY_BUFFER, nameVbo[4]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(surname1), surname1, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nameEbo[4]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(surnameIndices1), surnameIndices1, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //I
+    glBindVertexArray(nameVao[5]);
+    glBindBuffer(GL_ARRAY_BUFFER, nameVbo[5]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(surname2), surname2, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nameEbo[5]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(surnameIndices2), surnameIndices2, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //L
+    glBindVertexArray(nameVao[6]);
+    glBindBuffer(GL_ARRAY_BUFFER, nameVbo[6]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(surname3), surname3, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nameEbo[6]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(surnameIndices3), surnameIndices3, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //O
+    glBindVertexArray(nameVao[7]);
+    glBindBuffer(GL_ARRAY_BUFFER, nameVbo[7]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(surname4), surname4, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nameEbo[7]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(surnameIndices4), surnameIndices4, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //V
+    glBindVertexArray(nameVao[8]);
+    glBindBuffer(GL_ARRAY_BUFFER, nameVbo[8]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(surname5), surname5, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nameEbo[8]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(surnameIndices5), surnameIndices5, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //I
+    glBindVertexArray(nameVao[9]);
+    glBindBuffer(GL_ARRAY_BUFFER, nameVbo[9]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(surname6), surname6, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nameEbo[9]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(surnameIndices6), surnameIndices6, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //C
+    glBindVertexArray(nameVao[10]);
+    glBindBuffer(GL_ARRAY_BUFFER, nameVbo[10]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(surname7), surname7, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nameEbo[10]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(surnameIndices7), surnameIndices7, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //S
+    glBindVertexArray(indexVao[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, indexVbo[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(indeks1), indeks1, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEbo[0]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexIndices1), indexIndices1, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //V
+    glBindVertexArray(indexVao[1]);
+    glBindBuffer(GL_ARRAY_BUFFER, indexVbo[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(indeks2), indeks2, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEbo[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexIndices2), indexIndices2, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //2
+    glBindVertexArray(indexVao[2]);
+    glBindBuffer(GL_ARRAY_BUFFER, indexVbo[2]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(indeks3), indeks3, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEbo[2]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexIndices3), indexIndices3, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //2
+    glBindVertexArray(indexVao[3]);
+    glBindBuffer(GL_ARRAY_BUFFER, indexVbo[3]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(indeks4), indeks4, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEbo[3]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexIndices4), indexIndices4, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //-
+    glBindVertexArray(indexVao[4]);
+    glBindBuffer(GL_ARRAY_BUFFER, indexVbo[4]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(indeks5), indeks5, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEbo[4]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexIndices5), indexIndices5, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //2
+    glBindVertexArray(indexVao[5]);
+    glBindBuffer(GL_ARRAY_BUFFER, indexVbo[5]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(indeks6), indeks6, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEbo[5]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexIndices6), indexIndices6, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //0
+    glBindVertexArray(indexVao[6]);
+    glBindBuffer(GL_ARRAY_BUFFER, indexVbo[6]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(indeks7), indeks7, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEbo[6]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexIndices7), indexIndices7, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //2
+    glBindVertexArray(indexVao[7]);
+    glBindBuffer(GL_ARRAY_BUFFER, indexVbo[7]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(indeks8), indeks8, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEbo[7]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexIndices8), indexIndices8, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    //1
+    glBindVertexArray(indexVao[8]);
+    glBindBuffer(GL_ARRAY_BUFFER, indexVbo[8]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(indeks9), indeks9, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEbo[8]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexIndices9), indexIndices9, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
     // 1 texture
     unsigned texture1 = loadImageToTexture("res/1.png");
     glBindTexture(GL_TEXTURE_2D, texture1);
@@ -1478,6 +1968,102 @@ int main(void)
     // minus texture
     unsigned textureMinus = loadImageToTexture("res/minus.png");
     glBindTexture(GL_TEXTURE_2D, textureMinus);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // m texture
+    unsigned texturem = loadImageToTexture("res/m.png");
+    glBindTexture(GL_TEXTURE_2D, texturem);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // i texture
+    unsigned texturei = loadImageToTexture("res/i.png");
+    glBindTexture(GL_TEXTURE_2D, texturei);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // l texture
+    unsigned texturel = loadImageToTexture("res/l.png");
+    glBindTexture(GL_TEXTURE_2D, texturel);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // a texture
+    unsigned texturea = loadImageToTexture("res/a.png");
+    glBindTexture(GL_TEXTURE_2D, texturea);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // o texture
+    unsigned textureo = loadImageToTexture("res/o.png");
+    glBindTexture(GL_TEXTURE_2D, textureo);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // v texture
+    unsigned texturev = loadImageToTexture("res/v.png");
+    glBindTexture(GL_TEXTURE_2D, texturev);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // c texture
+    unsigned texturec = loadImageToTexture("res/c.png");
+    glBindTexture(GL_TEXTURE_2D, texturec);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glUseProgram(textureShader);
+    glUniform1i(uTexLoc, 0);
+    glUseProgram(0);
+    // s texture
+    unsigned textures = loadImageToTexture("res/s.png");
+    glBindTexture(GL_TEXTURE_2D, textures);
     glGenerateMipmap(GL_TEXTURE_2D);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -2533,6 +3119,128 @@ int main(void)
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
 
+        //IME I PREZIME
+        //m
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturem);
+        glBindVertexArray(nameVao[0]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //i
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturei);
+        glBindVertexArray(nameVao[1]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //l
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturel);
+        glBindVertexArray(nameVao[2]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //a
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturea);
+        glBindVertexArray(nameVao[3]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //m
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturem);
+        glBindVertexArray(nameVao[4]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //i
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturei);
+        glBindVertexArray(nameVao[5]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //l
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturel);
+        glBindVertexArray(nameVao[6]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //o
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, textureo);
+        glBindVertexArray(nameVao[7]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //v
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturev);
+        glBindVertexArray(nameVao[8]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //i
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturei);
+        glBindVertexArray(nameVao[9]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //c
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturec);
+        glBindVertexArray(nameVao[10]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //s
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, textures);
+        glBindVertexArray(indexVao[0]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //v
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturev);
+        glBindVertexArray(indexVao[1]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //2
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture2);
+        glBindVertexArray(indexVao[2]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //2
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture2);
+        glBindVertexArray(indexVao[3]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //-
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, textureMinus);
+        glBindVertexArray(indexVao[4]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //2
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture2);
+        glBindVertexArray(indexVao[5]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //0
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture0);
+        glBindVertexArray(indexVao[6]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //2
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture2);
+        glBindVertexArray(indexVao[7]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        //1
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture1);
+        glBindVertexArray(indexVao[8]);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+
         glBindVertexArray(0);
         glUseProgram(0);
 
@@ -2574,6 +3282,12 @@ int main(void)
     glDeleteVertexArrays(8, coordinatesVao2y);
     glDeleteBuffers(8, coordinatesVbo2y);
     glDeleteBuffers(8, coordinatesEbo2y);
+    glDeleteVertexArrays(11, nameVao);
+    glDeleteBuffers(11, nameVbo);
+    glDeleteBuffers(11, nameEbo);
+    glDeleteVertexArrays(9, indexVao);
+    glDeleteBuffers(9, indexVbo);
+    glDeleteBuffers(9, indexEbo);
     glDeleteProgram(mapShader);
     glDeleteProgram(textureShader);
 
