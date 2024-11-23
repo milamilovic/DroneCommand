@@ -2254,6 +2254,30 @@ int main(void)
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+    //led
+    float ledVertices[] =
+    {
+        -0.93, -0.78,    0.184f, 0.22f, 0.196f, 1.0,
+        -0.43, -0.78,    0.184f, 0.22f, 0.196f, 1.0
+    };
+    stride = 6 * sizeof(float);
+    unsigned int ledVAO;
+    glGenVertexArrays(1, &ledVAO);
+    glBindVertexArray(ledVAO);
+    unsigned int ledVBO;
+    glGenBuffers(1, &ledVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, ledVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(ledVertices), ledVertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
+
+
+
     // 1 texture
     unsigned texture1 = loadImageToTexture("res/1.png");
     glBindTexture(GL_TEXTURE_2D, texture1);
@@ -2726,6 +2750,54 @@ int main(void)
             glBindVertexArray(droneVAO2);
             glDrawArrays(GL_TRIANGLE_FAN, 0, 31);
         }
+
+        if ((!drone1.active || drone1.destroyed) && (!drone2.active || drone2.destroyed)) {
+
+            float newLedVertices[] =
+            {
+                -0.93, -0.78,    0.184f, 0.22f, 0.196f, 1.0,
+                -0.43, -0.78,    0.184f, 0.22f, 0.196f, 1.0
+            }; 
+            memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
+        } else if ((!drone1.active || drone1.destroyed) && drone2.active) {
+
+            float newLedVertices[] =
+            {
+                -0.93, -0.78,    0.184f, 0.22f, 0.196f, 1.0,
+                -0.43, -0.78,    0.329f, 0.612f, 0.404f, 1.0
+            };
+            memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
+        } else if (drone1.active && (!drone2.active || drone2.destroyed)) {
+
+            float newLedVertices[] =
+            {
+                -0.93, -0.78,    0.329f, 0.612f, 0.404f, 1.0,
+                -0.43, -0.78,    0.184f, 0.22f, 0.196f, 1.0
+            };
+            memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
+        } else {
+
+            float newLedVertices[] =
+            {
+                -0.93, -0.78,    0.329f, 0.612f, 0.404f, 1.0,
+                -0.43, -0.78,    0.329f, 0.612f, 0.404f, 1.0
+            };
+            memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
+        }
+        glUseProgram(basicShader);
+        glBindVertexArray(ledVAO);
+        glBindBuffer(GL_ARRAY_BUFFER, ledVBO);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(ledVertices), ledVertices);  // Update buffer data
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindVertexArray(ledVAO);
+        glPointSize(8);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+        glDrawArrays(GL_POINTS, 0, 2);
+        glBindVertexArray(0);
+        glUseProgram(0);
+
+
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
         //progress bar 1
         initializeProgressVertices(-0.9f, -0.74f, 0.4f, 0.08f, drone1.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices1);
@@ -3931,6 +4003,8 @@ int main(void)
     glDeleteVertexArrays(9, destroyedVao2);
     glDeleteBuffers(9, destroyedVbo2);
     glDeleteBuffers(9, destroyedEbo2);
+    glDeleteBuffers(1, &ledVBO);
+    glDeleteVertexArrays(1, &ledVAO);
     glDeleteProgram(mapShader);
     glDeleteProgram(textureShader);
 
