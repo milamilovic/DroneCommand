@@ -2613,74 +2613,83 @@ int main(void)
     glUseProgram(0);
 
     float timeSinceLastUpdate = 0.0f;
+    const float fixedTimeStep = 0.016f;
+    float accumulator = 0.0f;
 
 
     while (!glfwWindowShouldClose(window)) {
-        if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-            glfwSetWindowShouldClose(window, GL_TRUE);
-        }
-        if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
-            noFlyZone = { 0.05f, -0.07f, 0.20f, false, false };
-        }
-        if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS) {
-            if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
-                drone1.active = true;
-            }
-        }
-        if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS) {
-            if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
-                drone2.active = true;
-            }
-        }
-        if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS) {
-            if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
-                drone1.active = false;
-            }
-        }
-        if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS) {
-            if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
-                drone2.active = false;
-            }
-        }
-        if (drone1.active && !drone1.destroyed) {
-            if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-                drone1.y += 0.0005;
-                if(drone1.y > 1) drone1.destroyed= true;
-            }
-            if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-                drone1.y -= 0.0005;
-                if (drone1.y < -0.65) drone1.destroyed = true;
-            }
-            if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-                drone1.x -= 0.0005;
-                if (drone1.x < -1) drone1.destroyed = true;
-            }
-            if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-                drone1.x += 0.0005;
-                if (drone1.x > 1) drone1.destroyed = true;
-            }
-        }
-        if (drone2.active && !drone2.destroyed) {
-            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-                drone2.y += 0.0005;
-                if (drone2.y > 1) drone2.destroyed = true;
-            }
-            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-                drone2.y -= 0.0005;
-                if (drone2.y < -0.65) drone2.destroyed = true;
-            }
-            if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-                drone2.x -= 0.0005;
-                if (drone2.x < -1) drone2.destroyed = true;
-            }
-            if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-                drone2.x += 0.0005;
-                if (drone2.x > 1) drone2.destroyed = true;
-            }
-        }
 
         float currentTime = glfwGetTime();
-        if (currentTime - timeSinceLastUpdate > 0.016f) {  // 60 FPS
+        float deltaTime = currentTime - timeSinceLastUpdate;
+        timeSinceLastUpdate = currentTime;
+
+        accumulator += deltaTime;
+
+        while (accumulator >= fixedTimeStep) {
+
+            if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+                glfwSetWindowShouldClose(window, GL_TRUE);
+            }
+            if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+                noFlyZone = { 0.05f, -0.07f, 0.20f, false, false };
+            }
+            if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS) {
+                if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
+                    drone1.active = true;
+                }
+            }
+            if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS) {
+                if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
+                    drone2.active = true;
+                }
+            }
+            if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS) {
+                if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS) {
+                    drone1.active = false;
+                }
+            }
+            if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS) {
+                if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
+                    drone2.active = false;
+                }
+            }
+            if (drone1.active && !drone1.destroyed) {
+                if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+                    drone1.y += 0.005;
+                    if (drone1.y > 1) drone1.destroyed = true;
+                }
+                if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+                    drone1.y -= 0.005;
+                    if (drone1.y < -0.65) drone1.destroyed = true;
+                }
+                if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+                    drone1.x -= 0.005;
+                    if (drone1.x < -1) drone1.destroyed = true;
+                }
+                if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+                    drone1.x += 0.005;
+                    if (drone1.x > 1) drone1.destroyed = true;
+                }
+            }
+            if (drone2.active && !drone2.destroyed) {
+                if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+                    drone2.y += 0.005;
+                    if (drone2.y > 1) drone2.destroyed = true;
+                }
+                if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+                    drone2.y -= 0.005;
+                    if (drone2.y < -0.65) drone2.destroyed = true;
+                }
+                if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+                    drone2.x -= 0.005;
+                    if (drone2.x < -1) drone2.destroyed = true;
+                }
+                if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+                    drone2.x += 0.005;
+                    if (drone2.x > 1) drone2.destroyed = true;
+                }
+            }
+
             timeSinceLastUpdate = currentTime;
 
             if (drone1.active && drone1.batteryLevel > 0) {
@@ -2689,36 +2698,107 @@ int main(void)
             if (drone2.active && drone2.batteryLevel > 0) {
                 drone2.batteryLevel -= 0.1f;
             }
-        }
 
-        if (drone1.destroyed) {
-            drone1.batteryLevel = 0.0f;
-        }
-        if (drone2.destroyed) {
-            drone2.batteryLevel = 0.0f;
-        }
+            if (drone1.destroyed) {
+                drone1.batteryLevel = 0.0f;
+            }
+            if (drone2.destroyed) {
+                drone2.batteryLevel = 0.0f;
+            }
 
-        if (drone1.batteryLevel <= 0.0f) {
-            drone1.destroyed = true;
-        }
-        if (drone2.batteryLevel <= 0.0f) {
-            drone2.destroyed = true;
-        }
-        
-        //2 drones
-        if (areClashing(drone1.x, drone1.y, drone1.radius, drone2.x, drone2.y, drone2.radius)) {
-            drone1.destroyed = true;
-            drone2.destroyed = true;
-        }
+            if (drone1.batteryLevel <= 0.0f) {
+                drone1.destroyed = true;
+            }
+            if (drone2.batteryLevel <= 0.0f) {
+                drone2.destroyed = true;
+            }
 
-        // drone 1 and no fly zone
-        if (areClashing(drone1.x, drone1.y, drone1.radius, noFlyZone.x, noFlyZone.y, noFlyZone.radius)) {
-            drone1.destroyed = true;
-        }
+            //2 drones
+            if (areClashing(drone1.x, drone1.y, drone1.radius, drone2.x, drone2.y, drone2.radius)) {
+                drone1.destroyed = true;
+                drone2.destroyed = true;
+            }
 
-        // drone 2 and no fly zone
-        if (areClashing(drone2.x, drone2.y, drone2.radius, noFlyZone.x, noFlyZone.y, noFlyZone.radius)) {
-            drone2.destroyed = true;
+            // drone 1 and no fly zone
+            if (areClashing(drone1.x, drone1.y, drone1.radius, noFlyZone.x, noFlyZone.y, noFlyZone.radius)) {
+                drone1.destroyed = true;
+            }
+
+            // drone 2 and no fly zone
+            if (areClashing(drone2.x, drone2.y, drone2.radius, noFlyZone.x, noFlyZone.y, noFlyZone.radius)) {
+                drone2.destroyed = true;
+            }
+
+
+            if (noFlyZone.resizing) {
+                float aspectRatio = 0.75f;
+                float maxXEdge = noFlyZone.x + noFlyZone.radius * aspectRatio;
+                float minXEdge = noFlyZone.x - noFlyZone.radius * aspectRatio;
+                float maxYEdge = noFlyZone.y + noFlyZone.radius;
+                float minYEdge = noFlyZone.y - noFlyZone.radius;
+
+                const float mapMaxX = 1.0f;
+                const float mapMinX = -1.0f;
+                const float mapMaxY = 1.0f;
+                const float mapMinY = -0.7f;
+
+                if (maxXEdge < mapMaxX && minXEdge > mapMinX && maxYEdge < mapMaxY && minYEdge > mapMinY) {
+                    noFlyZone.radius += 0.001f;
+                }
+            }
+
+            if ((!drone1.active || drone1.destroyed) && (!drone2.active || drone2.destroyed)) {
+
+                float newLedVertices[] =
+                {
+                    -0.93, -0.78,    0.184f, 0.22f, 0.196f, 1.0,
+                    -0.43, -0.78,    0.184f, 0.22f, 0.196f, 1.0
+                };
+                memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
+            }
+            else if ((!drone1.active || drone1.destroyed) && drone2.active) {
+
+                float newLedVertices[] =
+                {
+                    -0.93, -0.78,    0.184f, 0.22f, 0.196f, 1.0,
+                    -0.43, -0.78,    0.329f, 0.612f, 0.404f, 1.0
+                };
+                memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
+            }
+            else if (drone1.active && (!drone2.active || drone2.destroyed)) {
+
+                float newLedVertices[] =
+                {
+                    -0.93, -0.78,    0.329f, 0.612f, 0.404f, 1.0,
+                    -0.43, -0.78,    0.184f, 0.22f, 0.196f, 1.0
+                };
+                memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
+            }
+            else {
+
+                float newLedVertices[] =
+                {
+                    -0.93, -0.78,    0.329f, 0.612f, 0.404f, 1.0,
+                    -0.43, -0.78,    0.329f, 0.612f, 0.404f, 1.0
+                };
+                memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
+            }
+
+            if (!drone1.destroyed) {
+                initializeDroneVertices(drone1, droneVertices1, 0.75f);
+            }
+
+            //drone 2
+            if (!drone2.destroyed) {
+                initializeDroneVertices(drone2, droneVertices2, 0.75f);
+            }
+
+
+            initializeProgressVertices(-0.9f, -0.74f, 0.4f, 0.08f, drone1.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices1);
+            initializeProgressVertices(-0.4f, -0.74f, 0.4f, 0.08f, drone2.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices2);
+
+
+            accumulator -= fixedTimeStep;
         }
 
         glClearColor(0.184, 0.341, 0.227, 1.0f);
@@ -2738,22 +2818,6 @@ int main(void)
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glUseProgram(basicShader);
-        if (noFlyZone.resizing) {
-            float aspectRatio = 0.75f;
-            float maxXEdge = noFlyZone.x + noFlyZone.radius * aspectRatio;
-            float minXEdge = noFlyZone.x - noFlyZone.radius * aspectRatio;
-            float maxYEdge = noFlyZone.y + noFlyZone.radius;
-            float minYEdge = noFlyZone.y - noFlyZone.radius;
-
-            const float mapMaxX = 1.0f;
-            const float mapMinX = -1.0f;
-            const float mapMaxY = 1.0f;
-            const float mapMinY = -0.7f;
-
-            if (maxXEdge < mapMaxX && minXEdge > mapMinX && maxYEdge < mapMaxY && minYEdge > mapMinY) {
-                noFlyZone.radius += 0.0001f;
-            }
-        }
         initializeNoFlyZoneVertices(noFlyZoneVertices, 0.75f);
         glBindBuffer(GL_ARRAY_BUFFER, noFlyZoneVBO);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(noFlyZoneVertices), noFlyZoneVertices);
@@ -2763,7 +2827,6 @@ int main(void)
 
         //drone 1
         if (!drone1.destroyed) {
-            initializeDroneVertices(drone1, droneVertices1, 0.75f);
             glBindBuffer(GL_ARRAY_BUFFER, droneVBO1);
             glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(droneVertices1), droneVertices1);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -2773,46 +2836,11 @@ int main(void)
 
         //drone 2
         if (!drone2.destroyed) {
-            initializeDroneVertices(drone2, droneVertices2, 0.75f);
             glBindBuffer(GL_ARRAY_BUFFER, droneVBO2);
             glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(droneVertices2), droneVertices2);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             glBindVertexArray(droneVAO2);
             glDrawArrays(GL_TRIANGLE_FAN, 0, 31);
-        }
-
-        if ((!drone1.active || drone1.destroyed) && (!drone2.active || drone2.destroyed)) {
-
-            float newLedVertices[] =
-            {
-                -0.93, -0.78,    0.184f, 0.22f, 0.196f, 1.0,
-                -0.43, -0.78,    0.184f, 0.22f, 0.196f, 1.0
-            }; 
-            memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
-        } else if ((!drone1.active || drone1.destroyed) && drone2.active) {
-
-            float newLedVertices[] =
-            {
-                -0.93, -0.78,    0.184f, 0.22f, 0.196f, 1.0,
-                -0.43, -0.78,    0.329f, 0.612f, 0.404f, 1.0
-            };
-            memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
-        } else if (drone1.active && (!drone2.active || drone2.destroyed)) {
-
-            float newLedVertices[] =
-            {
-                -0.93, -0.78,    0.329f, 0.612f, 0.404f, 1.0,
-                -0.43, -0.78,    0.184f, 0.22f, 0.196f, 1.0
-            };
-            memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
-        } else {
-
-            float newLedVertices[] =
-            {
-                -0.93, -0.78,    0.329f, 0.612f, 0.404f, 1.0,
-                -0.43, -0.78,    0.329f, 0.612f, 0.404f, 1.0
-            };
-            memcpy(ledVertices, newLedVertices, sizeof(newLedVertices));
         }
         glUseProgram(basicShader);
         glBindVertexArray(ledVAO);
@@ -2830,7 +2858,6 @@ int main(void)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
         //progress bar 1
-        initializeProgressVertices(-0.9f, -0.74f, 0.4f, 0.08f, drone1.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices1);
         glBindVertexArray(progressVAO1);
         glBindBuffer(GL_ARRAY_BUFFER, progressVBO1);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(progressVertices1), progressVertices1);  // Update buffer data
@@ -2842,7 +2869,6 @@ int main(void)
         glUseProgram(0);
 
         //progress bar 2
-        initializeProgressVertices(-0.4f, -0.74f, 0.4f, 0.08f, drone2.batteryLevel / 100.0f, 0.329f, 0.612f, 0.404f, progressVertices2);
         glBindVertexArray(progressVAO2);
         glBindBuffer(GL_ARRAY_BUFFER, progressVBO2);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(progressVertices2), progressVertices2);  // Update buffer data
